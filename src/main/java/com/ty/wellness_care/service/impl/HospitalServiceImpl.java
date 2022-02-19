@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.ty.wellness_care.dao.HospitalService;
 import com.ty.wellness_care.dto.Hospital;
+import com.ty.wellness_care.service.HospitalService;
 import com.ty.wellness_care.util.ResponseStructure;
 
 public class HospitalServiceImpl implements HospitalService{
@@ -17,7 +17,7 @@ public class HospitalServiceImpl implements HospitalService{
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<Hospital>> updateDoctor(int id, Hospital hospital) {
+	public ResponseEntity<ResponseStructure<Hospital>> updateHospital(int id, Hospital hospital) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -41,9 +41,11 @@ public class HospitalServiceImpl implements HospitalService{
 	}
 
 	@Override
-	public String deleteHospital(int id) {
+	public ResponseEntity<ResponseStructure<String>> deleteHospital(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }
