@@ -16,6 +16,6 @@ public interface AppointmentService {
 	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByBranch( int id);
 	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByUser( int id);
 	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByDoctor( int id);
-	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentById( int appointmentId );	public ResponseEntity<ResponseStructure<String>> deleteAppointment(int id);
-	
+	public ResponseEntity<ResponseStructure<Appointment>> getAppointmentById( int appointmentId );	
+	public ResponseEntity<ResponseStructure<String>> deleteAppointment(int id);
 }

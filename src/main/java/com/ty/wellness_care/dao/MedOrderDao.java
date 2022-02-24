@@ -7,10 +7,15 @@ import com.ty.wellness_care.dto.MedOrder;
 public interface MedOrderDao {
 
 	public MedOrder saveMedOrder(MedOrder medOrder);
-	public MedOrder updateMedOrder(int id,MedOrder medOrder);
+
+	public MedOrder updateMedOrder(int id, MedOrder medOrder);
+
 	public List<MedOrder> getAllMedOrders();
-	public List<MedOrder> getMedOrderById( int id);
+
+	public MedOrder getMedOrderById(int id);
+
 	public List<MedOrder> getMedOrderByPrescription(int prescriptionId);
-	public String deleteMedOrder(int id);
-	
+
+	public boolean deleteMedOrder(int id);
+
 }

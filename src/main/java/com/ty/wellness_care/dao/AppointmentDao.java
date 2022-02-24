@@ -13,8 +13,8 @@ public interface AppointmentDao {
 	public List<Appointment> getAppointmentByBranch( int id);
 	public List<Appointment> getAppointmentByDoctor( int id);
 	public List<Appointment> getAppointmentByUser( int id);
-	public List<Appointment> getAppointmentById(int appointmentId );
-	public String deleteAppointment(int id);
+	public Appointment getAppointmentById(int appointmentId );
+	public boolean deleteAppointment(int id);
 	
 	
 }

@@ -10,9 +10,9 @@ public interface DoctorDao {
 	public Doctor saveDoctor(Doctor doctor);
 	public Doctor updateDoctor(int id,Doctor doctor);
 	public List<Doctor> getAllDoctor();
-	public List<Doctor> getDoctorById( int id);
+	public Doctor getDoctorById( int id);
 	public List<Doctor> getDoctorByHospital(int hospitalid);
-	public String deleteMedOrder(int id);
+	public boolean deleteDoctor(int id);
 
 	
 }
