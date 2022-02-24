@@ -12,7 +12,7 @@ public interface PrescriptionService {
 	public ResponseEntity<ResponseStructure<Prescription>> updatePrescription(int id,Prescription prescription);
 	public ResponseEntity<ResponseStructure<List<Prescription>>> getAllPrescription();
 	public ResponseEntity<ResponseStructure<List<Prescription>>> getPrescriptionByDoctor( int doctorid);
-	public ResponseEntity<ResponseStructure<List<Prescription>>> getPrescriptionById(int prescriptionId);
+	public ResponseEntity<ResponseStructure<Prescription>> getPrescriptionById(int prescriptionId);
 	public ResponseEntity<ResponseStructure<String>> deletePrescription(int id);
 
 }

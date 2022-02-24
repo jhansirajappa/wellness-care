@@ -12,7 +12,7 @@ public interface PrescriptionDao {
 	public Prescription updatePrescription(int id,Prescription prescription);
 	public List<Prescription> getAllPrescription();
 	public List<Prescription> getPrescriptionByDoctor( int doctorid);
-	public List<Prescription> getPrescriptionById(int prescriptionId);
-	public String deletePrescription(int id);
+	public Prescription getPrescriptionById(int prescriptionId);
+	public boolean deletePrescription(int id);
 
 }
