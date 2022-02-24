@@ -27,27 +27,30 @@ public class AdminController {
 
 	@Autowired
 	AdminService service;
-	
+
 	@PostMapping("admin")
 	public ResponseEntity<ResponseStructure<Admin>> saveAdmin(@RequestBody Admin admin) {
-		return null;
+		return service.saveAdmin(admin);
 	}
-	
+
 	@GetMapping("admin/{adminid}")
 	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@PathVariable int adminid) {
-		return null;
+		return service.getAdminById(adminid);
 }
+
 	@GetMapping("admin")
-	public  ResponseEntity<ResponseStructure<List<Admin>>> getAllAdmins() {
-		return null;
-}
-	@PutMapping("admin/{adminid}") 
-	public ResponseEntity<ResponseStructure<Admin>> upddateAdmin(@RequestBody Admin admin,@PathVariable int adminid) {
-		return null;
-	
+	public ResponseEntity<ResponseStructure<List<Admin>>> getAllAdmins() {
+		return service.getAllAdmin();
 	}
-		@DeleteMapping("admin")
-		public ResponseEntity<ResponseStructure<String>> deleteAdmin(@RequestParam int id) {
-			return null;
-		}
+
+	@PutMapping("admin/{adminid}")
+	public ResponseEntity<ResponseStructure<Admin>> upddateAdmin(@RequestBody Admin admin, @PathVariable int adminid) {
+		return service.updateAdmin(admin, adminid);
+
+	}
+
+	@DeleteMapping("admin")
+	public ResponseEntity<ResponseStructure<String>> deleteAdmin(@RequestParam int id) {
+		return service.deleteAdmin(id);
+	}
 }

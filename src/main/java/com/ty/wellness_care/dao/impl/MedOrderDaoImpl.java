@@ -26,7 +26,7 @@ public class MedOrderDaoImpl implements MedOrderDao{
 	}
 
 	@Override
-	public List<MedOrder> getMedOrderById(int id) {
+	public MedOrder getMedOrderById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,9 +38,9 @@ public class MedOrderDaoImpl implements MedOrderDao{
 	}
 
 	@Override
-	public String deleteMedOrder(int id) {
+	public boolean deleteMedOrder(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }
