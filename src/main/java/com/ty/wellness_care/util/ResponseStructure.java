@@ -1,9 +1,5 @@
 package com.ty.wellness_care.util;
 
-import java.util.List;
-
-import com.ty.wellness_care.dto.Hospital;
-
 public class ResponseStructure<T> {
 	private int status;
 	private String message;
