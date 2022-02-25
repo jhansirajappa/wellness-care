@@ -44,6 +44,7 @@ public class Hospital {
 		this.admin = admin;
 	}
 	public List<Branch> getBranch() {
+		System.out.println();
 		return branch;
 	}
 	public void setBranch(List<Branch> branch) {
