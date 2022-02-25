@@ -22,6 +22,8 @@ public class Doctor {
 	private int experience;
 	private String email;
 	private String password;
+
+	@OneToMany(mappedBy = "doctor")
 	private Schedule schedule;
 
 	@OneToMany(mappedBy = "doctor")
