@@ -2,12 +2,16 @@ package com.ty.wellness_care.dto;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Room {
 
+	@Id
 	private int id;
 	private int room_no;
 	

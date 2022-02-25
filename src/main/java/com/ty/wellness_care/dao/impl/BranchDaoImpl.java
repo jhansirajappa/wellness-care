@@ -4,19 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.BranchDao;
 import com.ty.wellness_care.dto.Branch;
-import com.ty.wellness_care.dto.Room;
-import com.ty.wellness_care.repository.BranchRepositry;
+import com.ty.wellness_care.repository.BranchRepository;
 
 @Repository
 public class BranchDaoImpl implements BranchDao{
 
 	@Autowired
-	BranchRepositry repositry;
+	BranchRepository repositry;
 	
 	@Override
 	public Branch saveBranch(Branch branch) {
@@ -48,13 +46,8 @@ public class BranchDaoImpl implements BranchDao{
 	}
 
 	@Override
-    @Query("select b from Branch b where hospital")
-	public Branch getBranchByHospital(int hospitalid) {
-		Optional<Branch> optional = repositry.findById(hospitalid);
-		if (optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
+	public List<Branch> getBranchByHospital(int hospitalid) {
+	return repositry.getBranchByHospital(hospitalid);
 	}
 
 	@Override

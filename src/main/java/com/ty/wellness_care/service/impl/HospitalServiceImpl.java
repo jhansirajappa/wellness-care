@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.HospitalDao;
 import com.ty.wellness_care.dto.Hospital;
@@ -12,6 +13,7 @@ import com.ty.wellness_care.exception.HospitalNotFoundException;
 import com.ty.wellness_care.service.HospitalService;
 import com.ty.wellness_care.util.ResponseStructure;
 
+@Service
 public class HospitalServiceImpl implements HospitalService{
 
 	@Autowired
@@ -24,14 +26,12 @@ public class HospitalServiceImpl implements HospitalService{
 		responseStructure.setMessage("success");
 		responseStructure.setData(hospitalDao.saveHospital(hospital));
 		ResponseEntity<ResponseStructure<Hospital>> responseEntity=new ResponseEntity<ResponseStructure<Hospital>>(responseStructure,HttpStatus.OK);
-		
 		return responseEntity;
 	}
 
 	@Override
 	public ResponseEntity<ResponseStructure<Hospital>> updateHospital(int id,Hospital hospital) {
 	Hospital hospitalid=hospitalDao.getHospitalById(id);
-	
 		if(hospitalid != null) {
 			hospital.setId(hospitalid.getId());
 			hospitalDao.updateHospital(id, hospital);
@@ -40,7 +40,6 @@ public class HospitalServiceImpl implements HospitalService{
 		responseStructure.setMessage("success");
 		responseStructure.setData(hospital);
 		ResponseEntity<ResponseStructure<Hospital>> responseEntity=new ResponseEntity<ResponseStructure<Hospital>>(responseStructure,HttpStatus.OK);
-		
 		return responseEntity;
 	}
 		else {
@@ -60,7 +59,6 @@ public class HospitalServiceImpl implements HospitalService{
 		List<Hospital> hospital=hospitalDao.getAllHospital();
 		if(hospital != null) {
 			
-		
 		ResponseStructure<List<Hospital>> responseStructure=new ResponseStructure<List<Hospital>>();
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");

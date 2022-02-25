@@ -2,6 +2,7 @@ package com.ty.wellness_care.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,45 +14,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Branch;
+import com.ty.wellness_care.service.BranchService;
+import com.ty.wellness_care.service.HospitalService;
 import com.ty.wellness_care.util.ResponseStructure;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class BranchController {
 
+	@Autowired
+	BranchService branchService;
+	
 	@PostMapping("hospital/branch")
+	@ApiOperation("To Save Branch")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Branch>> saveBranch(@RequestBody Branch branch) {
-		// TODO Auto-generated method stub
-		return null;
+	 return branchService.saveBranch(branch);
 	}
 
 	@PutMapping("hospital/branch/{branchid}")
+	@ApiOperation("To Update Branch By Id")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Branch>> updateBranch(@PathVariable int branchid,@RequestBody Branch branch) {
-		// TODO Auto-generated method stub
-		return null;
+		return branchService.updateBranch(branchid, branch);
 	}
 
 	@GetMapping("hospital/branch")
+	@ApiOperation("To Get All Branches")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Branch>>> getAllBranch() {
-		// TODO Auto-generated method stub
-		return null;
+		return branchService.getAllBranch();
 	}
 
 	@GetMapping("hospital/branch/{branchid}")
-	public ResponseEntity<ResponseStructure<List<Branch>>> getBranchById(@PathVariable int branchid) {
-		// TODO Auto-generated method stub
-		return null;
+	@ApiOperation("To Get Branch By Id")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Branch>> getBranchById(@PathVariable int branchid) {
+		return branchService.getBranchById(branchid);
 	}
 
 	@GetMapping("hospital/{hospitalid}/branch")
+	@ApiOperation("To Get Branch By Hospital Id")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Branch>>> getBranchByHospital(@PathVariable int branchid) {
-		// TODO Auto-generated method stub
-		return null;
+		return branchService.getBranchByHospital(branchid);
 	}
 
 	@DeleteMapping("hospital/branch")
-	public String deleteBranch(@RequestParam int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@ApiOperation("To Delete Branch By Id")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<String>> deleteBranch(@RequestParam int id) {
+		return branchService.deleteBranch(id);
 	}
 
 }
