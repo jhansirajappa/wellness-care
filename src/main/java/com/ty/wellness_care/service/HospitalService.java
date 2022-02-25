@@ -12,7 +12,7 @@ public interface HospitalService {
 	public ResponseEntity<ResponseStructure<Hospital>>  saveHospital(Hospital hospital);
 	public ResponseEntity<ResponseStructure<Hospital>>  updateHospital(int id,Hospital hospital);
 	public ResponseEntity<ResponseStructure<List<Hospital>>> getAllHospital();
-	public ResponseEntity<ResponseStructure<List<Hospital>>> getHospitalById( int id);
+	public ResponseEntity<ResponseStructure<Hospital>> getHospitalById( int id);
 	public ResponseEntity<ResponseStructure<List<Hospital>>> getHospitalByAdmin(int adminid);
 	public ResponseEntity<ResponseStructure<String>> deleteHospital(int id);
 }
