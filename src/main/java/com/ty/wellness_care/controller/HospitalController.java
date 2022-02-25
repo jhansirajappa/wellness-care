@@ -2,6 +2,7 @@ package com.ty.wellness_care.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,45 +14,54 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Hospital;
+import com.ty.wellness_care.service.HospitalService;
 import com.ty.wellness_care.util.ResponseStructure;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class HospitalController {
 
+
+	@Autowired
+	HospitalService hospitalService;
+	
 	@PostMapping("admin/hospital")
-	public ResponseEntity<ResponseStructure<Hospital>> saveHospital(@RequestBody Hospital hospital) {
-		// TODO Auto-generated method stub
-		return null;
+	public  ResponseEntity<ResponseStructure<Hospital>> saveHospital(@RequestBody Hospital hospital) {
+		return hospitalService.saveHospital(hospital);
 	}
-
-	@PutMapping("admin/hospital/{hospitalid}")
-	public ResponseEntity<ResponseStructure<Hospital>> updateHospital(@PathVariable int hospitalid,@RequestBody Hospital hospital) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@GetMapping("admin/hospital")
 	public ResponseEntity<ResponseStructure<List<Hospital>>> getAllHospital() {
-		// TODO Auto-generated method stub
-		return null;
+		return hospitalService.getAllHospital();
 	}
 
-	@GetMapping("admin/hospital/{hospitalid}")
-	public ResponseEntity<ResponseStructure<List<Hospital>>> getHospitalById(@PathVariable int hospitalid) {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("admin/hospital/{id}")
+	@ApiOperation("To Get User By Id")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Hospital>> getHospitalById(@ApiParam("ID to get Hospital")  @PathVariable ("id")int id) {
+	return hospitalService.getHospitalById(id);
+	}
+	
+	@PutMapping("admin/hospital/{id}")
+	public ResponseEntity<ResponseStructure<Hospital>> updateUser(@RequestParam int id,@RequestBody Hospital hospital) {
+		return hospitalService.updateHospital(id,hospital);
+	}
+	
+	@DeleteMapping("admin/hospital/{id}")
+	public ResponseEntity<ResponseStructure<String>> deleteHospital(@RequestParam int id) {
+		return hospitalService.deleteHospital(id);
 	}
 
 	@GetMapping("admin/{adminid}/hospital")
-	public ResponseEntity<ResponseStructure<List<Hospital>>> getHospitalByAdmin(@PathVariable int hospitalid) {
-		// TODO Auto-generated method stub
-		return null;
+	@ApiOperation("To Get hospital By AdminId")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived Hospital"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<List<Hospital>>> getHospitalByAdmin(@PathVariable int adminid) {
+		return hospitalService.getHospitalByAdmin(adminid);
 	}
 
-	@DeleteMapping("admin/hospital")
-	public String deleteHospital(@RequestParam int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
