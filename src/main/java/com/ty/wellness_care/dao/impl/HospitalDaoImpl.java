@@ -1,46 +1,64 @@
 package com.ty.wellness_care.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.HospitalDao;
 import com.ty.wellness_care.dto.Hospital;
+import com.ty.wellness_care.repository.HospitalRepositry;
 
+@Repository
 public class HospitalDaoImpl implements HospitalDao{
 
+	@Autowired
+	HospitalRepositry repositry;
+	
 	@Override
 	public Hospital saveHospital(Hospital hospital) {
-		// TODO Auto-generated method stub
-		return null;
+		return repositry.save(hospital);
 	}
 
 	@Override
 	public Hospital updateHospital(int id, Hospital hospital) {
-		// TODO Auto-generated method stub
+		if (getHospitalById(id) != null) {
+			hospital.setId(id);
+			return repositry.save(hospital);
+		}
 		return null;
 	}
 
 	@Override
 	public List<Hospital> getAllHospital() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return repositry.findAll();
 	}
 
 	@Override
-	public List<Hospital> getHospitalById(int id) {
-		// TODO Auto-generated method stub
+	public Hospital getHospitalById(int id) {
+		Optional<Hospital> optional = repositry.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
 		return null;
 	}
 
 	@Override
 	public List<Hospital> getHospitalByAdmin(int adminid) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
-	public String deleteHospital(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteHospital(int id) {
+		Hospital hospital = getHospitalById(id);
+		if (hospital != null) {
+			repositry.delete(hospital);
+			return true;
+		}
+		return false;
 	}
 
 }

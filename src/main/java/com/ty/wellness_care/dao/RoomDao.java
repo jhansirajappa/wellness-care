@@ -9,8 +9,8 @@ public interface RoomDao {
 	public Room saveRoom(Room room);
 	public Room updateRoom(int id,Room room);
 	public List<Room> getAllRoom();
-	public List<Room> getRoomById( int id);
-	public List<Room> getRoomByFloor(int floorid);
-	public String deleteRoom(int id);
+	public Room getRoomById( int id);
+	public Room getRoomByFloor(int floorid);
+	public boolean deleteRoom(int id);
 
 }

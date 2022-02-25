@@ -9,8 +9,8 @@ public interface BranchDao {
 	public Branch saveBranch(Branch branch);
 	public Branch updateBranch(int id,Branch branch);
 	public List<Branch> getAllBranch();
-	public List<Branch> getBranchById( int id);
-	public List<Branch> getBranchByHospital(int hospitalid);
-	public String deleteBranch(int id);
+	public Branch getBranchById( int id);
+	public Branch getBranchByHospital(int hospitalid);
+	public boolean deleteBranch(int id);
 
 }

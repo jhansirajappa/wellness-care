@@ -2,45 +2,57 @@ package com.ty.wellness_care.dao.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.ty.wellness_care.dao.DoctorDao;
 import com.ty.wellness_care.dto.Doctor;
+import com.ty.wellness_care.repository.DoctorRepository;
 
+@Repository
 public class DoctorDaoImpl implements DoctorDao {
+
+	@Autowired
+	DoctorRepository doctorRepository;
 
 	@Override
 	public Doctor saveDoctor(Doctor doctor) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return	doctorRepository.save(doctor);
 	}
 
 	@Override
 	public Doctor updateDoctor(int id, Doctor doctor) {
-		// TODO Auto-generated method stub
-		return null;
+		Doctor doctor2=getDoctorById(id);
+		if(doctor2!=null){
+			doctor.setId(id);
+			return doctorRepository.save(doctor);
+		}return null;
 	}
 
 	@Override
 	public List<Doctor> getAllDoctor() {
-		// TODO Auto-generated method stub
-		return null;
+		return doctorRepository.findAll();
 	}
 
 	@Override
-	public List<Doctor> getDoctorById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Doctor getDoctorById(int id) {
+		return doctorRepository.getById(id);
 	}
 
 	@Override
 	public List<Doctor> getDoctorByHospital(int hospitalid) {
-		// TODO Auto-generated method stub
-		return null;
+		return doctorRepository.getDoctorByHospital(hospitalid);
 	}
 
 	@Override
-	public String deleteMedOrder(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public boolean deleteDoctor(int id) {
+		Doctor doctor=getDoctorById(id);
+		if(doctor!=null){
+			doctor.setId(id);
+			doctorRepository.delete(doctor);
+			return true;
+		}return false;
+		}
 
 }

@@ -17,7 +17,6 @@ import com.ty.wellness_care.dto.User;
 import com.ty.wellness_care.service.UserService;
 import com.ty.wellness_care.util.ResponseStructure;
 
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -25,32 +24,47 @@ import io.swagger.annotations.ApiResponses;
 public class UserController {
 
 	@Autowired
-	UserService service;
+	UserService userService;
 
 	@PostMapping("user")
+	@ApiResponses({@ApiResponse(code=200,message="User Saved"),
+		@ApiResponse(code=404,message = "User not saved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user) {
-		return service.saveUser(user);
+		return userService.saveUser(user);
 	}
 
 	@GetMapping("user/{userid}")
+	@ApiResponses({@ApiResponse(code=200,message="Admin retrieved"),
+		@ApiResponse(code=404,message = "Admin not retrieved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<User>> getUserById(@PathVariable int userid) {
-		return service.getUserById(userid);
+		return userService.getUserById(userid);
 	}
 
 	@GetMapping("user")
+	@ApiResponses({@ApiResponse(code=200,message="Admins retrived"),
+		@ApiResponse(code=404,message = "Admin not retrieved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<User>>> getAllUsers() {
-		return service.getAllUsers();
+		return userService.getAllUsers();
 	}
 
 	@PutMapping("user/{userid}")
+	@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
+		@ApiResponse(code=404,message = "Admin not updated"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<User>> upddateUser(@RequestBody User user, @PathVariable int userid) {
-		return service.updateUser(user, userid);
+		return userService.updateUser(user, userid);
 
 	}
 
 	@DeleteMapping("user")
+	@ApiResponses({@ApiResponse(code=200,message="Admin deleted"),
+		@ApiResponse(code=404,message = "Admin not deleted"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<String>> deleteUser(@RequestParam int id) {
-		return service.deleteUser(id);
+		return userService.deleteUser(id);
 	}
 
 }

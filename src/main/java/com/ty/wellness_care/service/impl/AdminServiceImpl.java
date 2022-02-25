@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.AdminDao;
 import com.ty.wellness_care.dto.Admin;
 import com.ty.wellness_care.service.AdminService;
 import com.ty.wellness_care.util.ResponseStructure;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired

@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.MedOrderDao;
 import com.ty.wellness_care.dto.MedOrder;
+import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.MedOrderService;
 import com.ty.wellness_care.util.ResponseStructure;
 
+@Service
 public class MedOrderServiceImpl implements MedOrderService {
 
 	@Autowired
@@ -28,22 +31,14 @@ public class MedOrderServiceImpl implements MedOrderService {
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<MedOrder>> updateMedOrder(int medOrderid, MedOrder medOrder) {
-		MedOrder medOrder1 = medOrderDao.getMedOrderById(medOrderid);
-		if (medOrder1 != null) {
-			ResponseStructure<MedOrder> structure = new ResponseStructure<MedOrder>();
-			structure.setStatus(HttpStatus.OK.value());
-			structure.setMessage("successful");
-			structure.setData(medOrderDao.updateMedOrder(medOrderid, medOrder));
-			ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
-					structure, HttpStatus.OK);
-
-			return responseEntity;
-
-		} else {
-			return null;
-		}
-
+	public ResponseEntity<ResponseStructure<MedOrder>> updateMedOrder(int id, MedOrder medOrder) {
+		ResponseStructure<MedOrder> responseStructure = new ResponseStructure<MedOrder>();
+		responseStructure.setStatus(HttpStatus.OK.value());
+		responseStructure.setMessage("Success");
+		responseStructure.setData(medOrderDao.updateMedOrder(id, medOrder));
+		ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
+				responseStructure, HttpStatus.OK);
+		return responseEntity;
 	}
 
 	@Override
@@ -83,22 +78,6 @@ public class MedOrderServiceImpl implements MedOrderService {
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int medOrderid) {
-		ResponseStructure<String> structure = new ResponseStructure<String>();
-		ResponseEntity<ResponseStructure<String>> responseEntity;
-
-		if (medOrderDao.deleteMedOrder(medOrderid)) {
-			structure.setStatus(HttpStatus.OK.value());
-			structure.setMessage("successful");
-			structure.setData("Medorder deleted");
-			responseEntity = new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.OK);
-			return responseEntity;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
 	public ResponseEntity<ResponseStructure<MedOrder>> getMedOrderById(int id) {
 
 		MedOrder medOrder = medOrderDao.getMedOrderById(id);
@@ -114,6 +93,26 @@ public class MedOrderServiceImpl implements MedOrderService {
 		} else {
 			return null;
 		}
+	}
+		
+		
+
+	@Override
+	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
+		if (medOrderDao.deleteMedOrder(id)) {
+			ResponseStructure<String> responseStructure = new ResponseStructure<String>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData("MedOrder Deleted");
+			ResponseEntity<ResponseStructure<String>> responseEntity = new ResponseEntity<ResponseStructure<String>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+
+		} else {
+			throw new IDNotFoundException("MedOrder Id: " + id + " not found/exists");
+
+		}
+
 	}
 
 }

@@ -26,7 +26,7 @@ public class WellnessCareConfiguration {
 		List<VendorExtension> extensions=new ArrayList<VendorExtension>();
 		
 		ApiInfo apiInfo=new ApiInfo("Wellness_care Api Document",
-				"Project for patients appointment with doctors,labs and medication", 
+				"Project for patient's appointment with doctors,labs and medication", 
 			     "TYP-Wellnesscare-project-Sanpshot -1.0.1",
 			     "https://Wellnesscare.com/",
 			     contact,
