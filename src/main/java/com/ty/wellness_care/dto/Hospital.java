@@ -2,8 +2,10 @@ package com.ty.wellness_care.dto;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Hospital {
 
 	private int id;
