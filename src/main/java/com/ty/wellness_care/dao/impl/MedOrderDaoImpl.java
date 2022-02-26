@@ -24,7 +24,7 @@ public class MedOrderDaoImpl implements MedOrderDao {
 	public MedOrder updateMedOrder(int id, MedOrder medOrder) {
 		MedOrder order = getMedOrderById(id);
 		if (order != null) {
-			medOrder.setId(id);
+			medOrder.setMedOrderId(id);
 			return medOrderRepository.save(medOrder);
 
 		}
@@ -50,13 +50,13 @@ public class MedOrderDaoImpl implements MedOrderDao {
 
 	@Override
 	public boolean deleteMedOrder(int id) {
+
 		MedOrder order = getMedOrderById(id);
 		if (order != null) {
 			medOrderRepository.delete(order);
 			return true;
 		}
-			return false;
+		return false;
 	}
-
 
 }

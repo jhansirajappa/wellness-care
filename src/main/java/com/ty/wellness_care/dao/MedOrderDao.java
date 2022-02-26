@@ -17,5 +17,4 @@ public interface MedOrderDao {
 	public List<MedOrder> getMedOrderByPrescription(int prescriptionId);
 
 	public boolean deleteMedOrder(int id);
-
 }

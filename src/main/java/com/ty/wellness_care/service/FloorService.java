@@ -12,7 +12,7 @@ public interface FloorService {
 	public ResponseEntity<ResponseStructure<Floor>>  saveFloor(Floor floor);
 	public ResponseEntity<ResponseStructure<Floor>>  updateFloor(int id,Floor floor);
 	public ResponseEntity<ResponseStructure<List<Floor>>> getAllFloor();
-	public ResponseEntity<ResponseStructure<List<Floor>>> getFloorById( int id);
+	public ResponseEntity<ResponseStructure<Floor>> getFloorById( int id);
 	public ResponseEntity<ResponseStructure<List<Floor>>> getFloorByBranch(int branchid);
 	public ResponseEntity<ResponseStructure<String>> deleteFloor(int id);
 

@@ -14,40 +14,55 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Admin;
-import com.ty.wellness_care.dto.User;
 import com.ty.wellness_care.service.AdminService;
 import com.ty.wellness_care.util.ResponseStructure;
 
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 
 @RestController
 public class AdminController {
 
 	@Autowired
 	AdminService service;
-	
+
 	@PostMapping("admin")
+	@ApiResponses({@ApiResponse(code=200,message="Admin saved Successful"),
+		@ApiResponse(code=404,message = "Admin Login failed"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Admin>> saveAdmin(@RequestBody Admin admin) {
-		return null;
+		return service.saveAdmin(admin);
 	}
-	
+
 	@GetMapping("admin/{adminid}")
+	@ApiResponses({@ApiResponse(code=200,message="Retrived Admin "),
+		@ApiResponse(code=404,message = "Admin not retrived"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@PathVariable int adminid) {
-		return null;
+		return service.getAdminById(adminid);
 }
+
 	@GetMapping("admin")
-	public  ResponseEntity<ResponseStructure<List<Admin>>> getAllAdmins() {
-		return null;
-}
-	@PutMapping("admin/{adminid}") 
-	public ResponseEntity<ResponseStructure<Admin>> upddateAdmin(@RequestBody Admin admin,@PathVariable int adminid) {
-		return null;
-	
+	@ApiResponses({@ApiResponse(code=200,message="Retrieved all the admins"),
+		@ApiResponse(code=404,message = "Admin not retrieved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<List<Admin>>> getAllAdmins() {
+		return service.getAllAdmin();
 	}
-		@DeleteMapping("admin")
-		public ResponseEntity<ResponseStructure<String>> deleteAdmin(@RequestParam int id) {
-			return null;
-		}
+
+	@PutMapping("admin/{adminid}")@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
+		@ApiResponse(code=404,message = "Admin not updated"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Admin>> upddateAdmin(@RequestBody Admin admin, @PathVariable int adminid) {
+		return service.updateAdmin(admin, adminid);
+
+	}
+
+	@DeleteMapping("admin")@ApiResponses({@ApiResponse(code=200,message="Admin deleted"),
+		@ApiResponse(code=404,message = "Admin not deleted"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<String>> deleteAdmin(@RequestParam int id) {
+		return service.deleteAdmin(id);
+	}
 }

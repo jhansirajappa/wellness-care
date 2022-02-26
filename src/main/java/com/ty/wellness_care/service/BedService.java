@@ -13,7 +13,7 @@ public interface BedService {
 	public ResponseEntity<ResponseStructure<Bed>>  saveBed(Bed bed);
 	public ResponseEntity<ResponseStructure<Bed>>  updateBed(int id,Bed bed);
 	public ResponseEntity<ResponseStructure<List<Bed>>> getAllBed();
-	public ResponseEntity<ResponseStructure<List<Bed>>> getBedById( int id);
+	public ResponseEntity<ResponseStructure<Bed>> getBedById( int id);
 	public ResponseEntity<ResponseStructure<List<Bed>>> getBedByRoom(int roomid);
 	public ResponseEntity<ResponseStructure<String>> deleteBed(int id);
 

@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.MedOrderDao;
-import com.ty.wellness_care.dto.Appointment;
 import com.ty.wellness_care.dto.MedOrder;
 import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.MedOrderService;
@@ -19,17 +18,16 @@ public class MedOrderServiceImpl implements MedOrderService {
 
 	@Autowired
 	MedOrderDao medOrderDao;
-	
+
 	@Override
 	public ResponseEntity<ResponseStructure<MedOrder>> saveMedOrder(MedOrder medOrder) {
-		ResponseStructure<MedOrder> responseStructure = new ResponseStructure<MedOrder>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(medOrderDao.saveMedOrder(medOrder));
+		ResponseStructure<MedOrder> structure = new ResponseStructure<MedOrder>();
+		structure.setStatus(HttpStatus.OK.value());
+		structure.setMessage("successful");
+		structure.setData(medOrderDao.saveMedOrder(medOrder));
 		ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
-				responseStructure, HttpStatus.OK);
+				structure, HttpStatus.OK);
 		return responseEntity;
-
 	}
 
 	@Override
@@ -45,52 +43,59 @@ public class MedOrderServiceImpl implements MedOrderService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<List<MedOrder>>> getAllMedOrders() {
-		List<MedOrder> medOrders = medOrderDao.getAllMedOrders();
-		ResponseStructure<List<MedOrder>> responseStructure = new ResponseStructure<List<MedOrder>>();
-		if (medOrders != null) {
-			responseStructure.setStatus(HttpStatus.OK.value());
-			responseStructure.setMessage("Success");
-			responseStructure.setData(medOrders);
+		List<MedOrder> list = medOrderDao.getAllMedOrders();
+		ResponseStructure<List<MedOrder>> structure = new ResponseStructure<List<MedOrder>>();
+
+		if (list != null) {
+			structure.setStatus(HttpStatus.OK.value());
+			structure.setMessage("successful");
+			structure.setData(list);
+			ResponseEntity<ResponseStructure<List<MedOrder>>> reponseEntity = new ResponseEntity<ResponseStructure<List<MedOrder>>>(
+					structure, HttpStatus.OK);
+
+			return reponseEntity;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(int prescriptionId) {
+		List<MedOrder> medOrder = medOrderDao.getMedOrderByPrescription(prescriptionId);
+		if (medOrder != null) {
+			ResponseStructure<List<MedOrder>> structure = new ResponseStructure<List<MedOrder>>();
+			structure.setStatus(HttpStatus.OK.value());
+			structure.setMessage("successfull");
+			structure.setData(medOrder);
 			ResponseEntity<ResponseStructure<List<MedOrder>>> responseEntity = new ResponseEntity<ResponseStructure<List<MedOrder>>>(
-					responseStructure, HttpStatus.OK);
+					structure, HttpStatus.OK);
 
 			return responseEntity;
-
 		} else {
-			throw new IDNotFoundException(" No Appointment found to display");
+			return null;
 		}
+
 	}
 
 	@Override
 	public ResponseEntity<ResponseStructure<MedOrder>> getMedOrderById(int id) {
-		ResponseStructure<MedOrder> responseStructure = new ResponseStructure<MedOrder>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(medOrderDao.getMedOrderById(id));
-		ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;	}
 
-	@Override
-	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(int prescriptionId) {
-	
-		List<MedOrder> medOrders = medOrderDao.getMedOrderByPrescription(prescriptionId);
-		ResponseStructure<List<MedOrder>> responseStructure = new ResponseStructure<List<MedOrder>>();
-		if (medOrders != null) {
-			responseStructure.setStatus(HttpStatus.OK.value());
-			responseStructure.setMessage("Success");
-			responseStructure.setData(medOrders);
-			ResponseEntity<ResponseStructure<List<MedOrder>>> responseEntity = new ResponseEntity<ResponseStructure<List<MedOrder>>>(
-					responseStructure, HttpStatus.OK);
+		MedOrder medOrder = medOrderDao.getMedOrderById(id);
+		if (medOrder != null) {
+			ResponseStructure<MedOrder> structure = new ResponseStructure<MedOrder>();
+			structure.setStatus(HttpStatus.OK.value());
+			structure.setMessage("successfull");
+			structure.setData(medOrder);
+			ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
+					structure, HttpStatus.OK);
 
 			return responseEntity;
-
 		} else {
-			throw new IDNotFoundException(" No Appointment found to display");
+			return null;
 		}
-
-		
 	}
+		
+		
 
 	@Override
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {

@@ -1,1 +1,0 @@
-package com.ty.wellness_care.configuration;

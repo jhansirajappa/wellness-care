@@ -10,7 +10,7 @@ public interface FloorDao {
 	public Floor updateFloor(int id,Floor floor);
 	public List<Floor> getAllFloor();
 	public Floor getFloorById( int id);
-	public Floor getFloorByBranch(int branchid);
+	public List<Floor> getFloorByBranch(int branchid);
 	public boolean deleteFloor(int id);
 
 }
