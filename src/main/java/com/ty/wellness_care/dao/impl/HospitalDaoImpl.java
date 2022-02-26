@@ -8,13 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.HospitalDao;
 import com.ty.wellness_care.dto.Hospital;
-import com.ty.wellness_care.repository.HospitalRepositry;
+import com.ty.wellness_care.repository.HospitalRepository;
 
 @Repository
 public class HospitalDaoImpl implements HospitalDao{
 
 	@Autowired
-	HospitalRepositry repositry;
+	HospitalRepository repositry;
 	
 	@Override
 	public Hospital saveHospital(Hospital hospital) {
@@ -47,8 +47,7 @@ public class HospitalDaoImpl implements HospitalDao{
 
 	@Override
 	public List<Hospital> getHospitalByAdmin(int adminid) {
-		
-		return null;
+		return repositry.getHospitalByAdmin(adminid);
 	}
 
 	@Override

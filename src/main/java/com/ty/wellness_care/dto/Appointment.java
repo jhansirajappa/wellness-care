@@ -25,15 +25,15 @@ public class Appointment {
 	private int age;
 	private String gender;
 	private String reason;
-	
+
 	@ManyToOne
 	@JoinColumn
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn
 	private Branch branch;
-	
+
 	@ManyToOne
 	@JoinColumn
 	private Doctor doctor;
@@ -149,6 +149,5 @@ public class Appointment {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
-	
+
 }

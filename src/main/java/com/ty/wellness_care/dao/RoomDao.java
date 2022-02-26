@@ -10,7 +10,7 @@ public interface RoomDao {
 	public Room updateRoom(int id,Room room);
 	public List<Room> getAllRoom();
 	public Room getRoomById( int id);
-	public Room getRoomByFloor(int floorid);
+	public List<Room> getRoomByFloor(int floorid);
 	public boolean deleteRoom(int id);
 
 }

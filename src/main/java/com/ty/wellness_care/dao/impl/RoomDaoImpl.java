@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.RoomDao;
 import com.ty.wellness_care.dto.Room;
 import com.ty.wellness_care.repository.RoomRepositry;
 
+@Repository
 public class RoomDaoImpl implements RoomDao{
 
 	@Autowired
@@ -44,12 +46,8 @@ public class RoomDaoImpl implements RoomDao{
 	}
 
 	@Override
-	public Room getRoomByFloor(int floorid) {
-		Optional<Room> optional = repositry.findById(floorid);
-		if (optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
+	public List<Room> getRoomByFloor(int floorid) {
+		return repositry.getRoomByFloor(floorid);
 	}
 
 	@Override

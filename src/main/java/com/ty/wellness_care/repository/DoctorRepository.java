@@ -11,4 +11,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
 	@Query("Select d from Doctor d where d.hospital.id=?1")
 	public List<Doctor> getDoctorByHospital(int hospitalid);
+
+	@Query("Select d from Doctor d where d.schedule.id=?1")
+	public List<Doctor> getDoctorBySchedule(int scheduleid);
 }

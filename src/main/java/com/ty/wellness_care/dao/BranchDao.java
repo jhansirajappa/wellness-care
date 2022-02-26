@@ -10,7 +10,7 @@ public interface BranchDao {
 	public Branch updateBranch(int id,Branch branch);
 	public List<Branch> getAllBranch();
 	public Branch getBranchById( int id);
-	public Branch getBranchByHospital(int hospitalid);
+	public List<Branch> getBranchByHospital(int hospitalid);
 	public boolean deleteBranch(int id);
 
 }

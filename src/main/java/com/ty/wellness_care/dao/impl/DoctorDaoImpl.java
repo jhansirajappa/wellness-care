@@ -18,16 +18,17 @@ public class DoctorDaoImpl implements DoctorDao {
 	@Override
 	public Doctor saveDoctor(Doctor doctor) {
 
-		return	doctorRepository.save(doctor);
+		return doctorRepository.save(doctor);
 	}
 
 	@Override
 	public Doctor updateDoctor(int id, Doctor doctor) {
-		Doctor doctor2=getDoctorById(id);
-		if(doctor2!=null){
+		Doctor doctor2 = getDoctorById(id);
+		if (doctor2 != null) {
 			doctor.setId(id);
 			return doctorRepository.save(doctor);
-		}return null;
+		}
+		return null;
 	}
 
 	@Override
@@ -47,12 +48,19 @@ public class DoctorDaoImpl implements DoctorDao {
 
 	@Override
 	public boolean deleteDoctor(int id) {
-		Doctor doctor=getDoctorById(id);
-		if(doctor!=null){
+		Doctor doctor = getDoctorById(id);
+		if (doctor != null) {
 			doctor.setId(id);
 			doctorRepository.delete(doctor);
 			return true;
-		}return false;
 		}
+		return false;
+	}
+
+	@Override
+	public List<Doctor> getDoctorBySchedule(int hospitalid) {
+		return doctorRepository.getDoctorBySchedule(hospitalid);
+
+	}
 
 }
