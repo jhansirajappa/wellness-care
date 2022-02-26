@@ -2,31 +2,49 @@ package com.ty.wellness_care.dto;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Branch {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String address;
-	
+
 	@OneToMany(mappedBy = "branch")
 	List<Floor> floor;
-	
+
 	@OneToMany(mappedBy = "branch")
 	List<Appointment> appointment;
-	
-	@OneToMany(mappedBy ="branch" )
+
+	@OneToMany(mappedBy = "branch")
 	List<Lab> lab;
-	
+
+	@OneToMany
+	List<Schedule> schedules;
+
 	@ManyToOne
 	@JoinColumn
 	Hospital hospital;
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
 	}
 
 	public void setId(int id) {
@@ -80,6 +98,5 @@ public class Branch {
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
-	
-	
+
 }

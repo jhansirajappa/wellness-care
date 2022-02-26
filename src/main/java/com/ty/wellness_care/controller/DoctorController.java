@@ -21,38 +21,41 @@ public class DoctorController {
 
 	@Autowired
 	DoctorService doctorService;
-	
-@PostMapping("hospital/doctor")
+
+	@PostMapping("hospital/doctor")
 	public ResponseEntity<ResponseStructure<Doctor>> saveDoctor(@RequestBody Doctor doctor) {
-	return doctorService.saveDoctor(doctor);
+		return doctorService.saveDoctor(doctor);
 
-}
+	}
 
-@PutMapping("hospital/doctor/{doctorid}")
-public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int id,@RequestBody
-		Doctor doctor) {
+	@PutMapping("hospital/doctor/{doctorid}")
+	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int id, @RequestBody Doctor doctor) {
 		return doctorService.updateDoctor(id, doctor);
 	}
 
-@GetMapping("hospital/doctor")
-public ResponseEntity<ResponseStructure<List<Doctor>>> getAllDoctor() {
+	@GetMapping("hospital/doctor")
+	public ResponseEntity<ResponseStructure<List<Doctor>>> getAllDoctor() {
 		return doctorService.getAllDoctor();
 	}
 
-@GetMapping("hospital/doctor/{doctorid}")
+	@GetMapping("hospital/doctor/{doctorid}")
 	public ResponseEntity<ResponseStructure<Doctor>> getDoctorById(@PathVariable int id) {
 		return doctorService.getDoctorById(id);
 	}
 
-@GetMapping("hospital/{hospitalid}/doctor")
-public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorByHospital(int hospitalid) {
+	@GetMapping("hospital/{hospitalid}/doctor")
+	public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorByHospital(int hospitalid) {
 		return doctorService.getDoctorByHospital(hospitalid);
 	}
 
-@DeleteMapping("hospital/doctor")
+	@GetMapping("schedule/{scheduleid}/doctor")
+	public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorBySchedule(int hospitalid) {
+		return doctorService.getDoctorByHospital(hospitalid);
+	}
+
+	@DeleteMapping("hospital/doctor")
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
 		return doctorService.deleteMedOrder(id);
 	}
 
-	
 }
