@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.ty.wellness_care.dto.Branch;
-import com.ty.wellness_care.dto.Prescription;
 
 public interface BranchRepository extends JpaRepository<Branch, Integer>{
 
