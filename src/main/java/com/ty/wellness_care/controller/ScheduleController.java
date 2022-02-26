@@ -25,28 +25,38 @@ public class ScheduleController {
 
 	@PostMapping("doctor/schedule")
 	public ResponseEntity<ResponseStructure<Schedule>> saveSchedule(@RequestBody Schedule schedule) {
-		return null;
+		return service.saveSchedule(schedule);
 	}
 
 	@GetMapping("doctor/{doctorid}/schedule/{scheduleid}")
 	public ResponseEntity<ResponseStructure<Schedule>> getScheduleById(@PathVariable int scheduleid,
 			@PathVariable int doctorid) {
-		return null;
+		return service.getScheduleById(doctorid);
 	}
 
 	@GetMapping("doctor/schedule")
 	public ResponseEntity<ResponseStructure<List<Schedule>>> getAllSchedules() {
-		return null;
+		return service.getAllSchedules();
+	}
+
+	@GetMapping("branch/{branchid}/schedule")
+	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByBranch(@PathVariable int hospitalId) {
+		return service.getScheduleByBranch(hospitalId);
+	}
+
+	@GetMapping("doctor/{doctorid}/schedule")
+	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByDoctor(@PathVariable int doctorId) {
+		return service.getScheduleByDoctor(doctorId);
 	}
 
 	@PutMapping("doctor/{doctorid}/schedule/{scheduleid}")
-	public ResponseEntity<ResponseStructure<Schedule>> upddateSchedule(@RequestBody Schedule schedule,
+	public ResponseEntity<ResponseStructure<Schedule>> updateSchedule(@RequestBody Schedule schedule,
 			@PathVariable int scheduleid, @PathVariable int doctorid) {
-		return null;
+		return service.updateSchedule(doctorid, schedule);
 	}
 
 	@DeleteMapping("doctor/schedule")
 	public ResponseEntity<ResponseStructure<String>> deleteSchedule(@RequestParam int id) {
-		return null;
+		return service.deleteSchedule(id);
 	}
 }
