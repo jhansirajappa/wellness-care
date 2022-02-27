@@ -57,10 +57,5 @@ public class DoctorDaoImpl implements DoctorDao {
 		return false;
 	}
 
-	@Override
-	public List<Doctor> getDoctorBySchedule(int hospitalid) {
-		return doctorRepository.getDoctorBySchedule(hospitalid);
-
-	}
 
 }

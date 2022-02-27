@@ -16,8 +16,6 @@ public interface DoctorDao {
 
 	public List<Doctor> getDoctorByHospital(int hospitalid);
 
-	public List<Doctor> getDoctorBySchedule(int hospitalid);
-
 	public boolean deleteDoctor(int id);
 
 }
