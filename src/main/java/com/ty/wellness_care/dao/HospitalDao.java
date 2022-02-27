@@ -10,7 +10,6 @@ public interface HospitalDao {
 	public Hospital updateHospital(int id,Hospital hospital);
 	public List<Hospital> getAllHospital();
 	public Hospital getHospitalById( int id);
-	public List<Hospital> getHospitalByAdmin(int adminid);
 	public boolean deleteHospital(int id);
 
 }

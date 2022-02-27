@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -17,9 +18,11 @@ public class Schedule {
 	private LocalTime time;
 
 	@ManyToOne
+	@JoinColumn
 	private Branch branch;
 
 	@ManyToOne
+	@JoinColumn
 	private Doctor doctor;
 
 	public int getId() {

@@ -48,11 +48,6 @@ public class DoctorController {
 		return doctorService.getDoctorByHospital(hospitalid);
 	}
 
-	@GetMapping("schedule/{scheduleid}/doctor")
-	public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorBySchedule(int hospitalid) {
-		return doctorService.getDoctorByHospital(hospitalid);
-	}
-
 	@DeleteMapping("hospital/doctor")
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
 		return doctorService.deleteMedOrder(id);

@@ -66,15 +66,14 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(Admin admin, int adminId) {
-		Admin adminid = adminDao.getAdminById(adminId);
+		Admin adminid =adminDao.updateAdmin(adminId, admin);
 		if (adminid != null) {
 			ResponseStructure<Admin> structure = new ResponseStructure<Admin>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");
-			structure.setData(adminDao.updateAdmin(adminId, admin));
+			structure.setData(adminid);
 			ResponseEntity<ResponseStructure<Admin>> responseEntity = new ResponseEntity<ResponseStructure<Admin>>(
 					structure, HttpStatus.OK);
-
 			return responseEntity;
 
 		} else {

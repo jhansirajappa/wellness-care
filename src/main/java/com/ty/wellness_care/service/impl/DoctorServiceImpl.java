@@ -95,15 +95,4 @@ public class DoctorServiceImpl implements DoctorService {
 
 	}
 
-	@Override
-	public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorBySchedule(int scheduleid) {
-		ResponseStructure<List<Doctor>> responseStructure = new ResponseStructure<List<Doctor>>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(doctorDao.getDoctorBySchedule(scheduleid));
-		ResponseEntity<ResponseStructure<List<Doctor>>> responseEntity = new ResponseEntity<ResponseStructure<List<Doctor>>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
-	}
-
 }

@@ -19,10 +19,8 @@ public class User {
 	private String password;
 	private long phone_no;
 
-	@OneToMany
-	private List<Appointment> list;
-
-	
+	@OneToMany(mappedBy = "user")
+	private List<Appointment> appointments;
 
 	public int getUserId() {
 		return userId;
@@ -64,12 +62,12 @@ public class User {
 		this.phone_no = phone_no;
 	}
 
-	public List<Appointment> getList() {
-		return list;
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
 
-	public void setList(List<Appointment> list) {
-		this.list = list;
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 }

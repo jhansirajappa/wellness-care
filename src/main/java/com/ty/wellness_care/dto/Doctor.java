@@ -24,7 +24,7 @@ public class Doctor {
 	private String password;
 
 	@OneToMany(mappedBy = "doctor")
-	private Schedule schedule;
+	private List<Schedule> schedule;
 
 	@OneToMany(mappedBy = "doctor")
 	private List<Appointment> appointments;
@@ -100,16 +100,16 @@ public class Doctor {
 		this.password = password;
 	}
 
-	public Schedule getSchedule() {
+	public List<Schedule> getSchedule() {
 		return schedule;
-	}
-
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
 	}
 
 	public List<Appointment> getAppointments() {
 		return appointments;
+	}
+
+	public void setSchedule(List<Schedule> schedule) {
+		this.schedule = schedule;
 	}
 
 	public void setAppointments(List<Appointment> appointments) {

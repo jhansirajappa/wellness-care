@@ -29,8 +29,7 @@ public class AdminDaoImpl implements AdminDao {
 			existingAdmin.setEmail(admin.getEmail());
 			existingAdmin.setPassword(admin.getPassword());
 			existingAdmin.setName(admin.getName());
-
-			return existingAdmin;
+			return adminRepository.save(existingAdmin);
 		}
 		return null;
 	}

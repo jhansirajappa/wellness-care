@@ -46,11 +46,6 @@ public class HospitalDaoImpl implements HospitalDao{
 	}
 
 	@Override
-	public List<Hospital> getHospitalByAdmin(int adminid) {
-		return repositry.getHospitalByAdmin(adminid);
-	}
-
-	@Override
 	public boolean deleteHospital(int id) {
 		Hospital hospital = getHospitalById(id);
 		if (hospital != null) {
