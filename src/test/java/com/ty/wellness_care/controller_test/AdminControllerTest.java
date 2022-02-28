@@ -11,14 +11,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ty.wellness_care.controller.AdminController;
 import com.ty.wellness_care.dao.AdminDao;
 import com.ty.wellness_care.dto.Admin;
 import com.ty.wellness_care.dto.Hospital;
-import com.ty.wellness_care.util.ResponseStructure;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -65,7 +63,6 @@ public class AdminControllerTest {
 	public void updateAdminTest() {
 
 		Admin admin = new Admin(1, "fgdhjka", "1233", "egsahs", new Hospital());
-//		Admin admin1 = new Admin(1, "fgdhjka", "124567890", "egsgahs", new Hospital());
 		when(dao.updateAdmin(1, admin)).thenReturn(admin);
 		assertEquals(admin, controller.updateAdmin(admin, 1).getBody().getData());
 	}

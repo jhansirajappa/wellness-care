@@ -45,8 +45,9 @@ public class UserDaoImpl implements UserDao {
 			existingUser.setPassword(user.getPassword());
 			existingUser.setPhone_no(user.getPhone_no());
 			return userRepository.save(existingUser);
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	public boolean deleteUser(int id) {
