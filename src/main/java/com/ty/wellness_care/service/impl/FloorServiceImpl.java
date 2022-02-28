@@ -33,11 +33,9 @@ public class FloorServiceImpl implements FloorService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Floor>> updateFloor(int id, Floor floor) {
-		Floor floor2=floorDao.getFloorById(id);
+		Floor floor2=floorDao.updateFloor(id, floor);
 		
 		if(floor2 != null) {
-			floor.setId(floor2.getId());
-			floorDao.updateFloor(id, floor);
 		ResponseStructure<Floor> responseStructure=new ResponseStructure<Floor>();
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");
@@ -89,7 +87,7 @@ public class FloorServiceImpl implements FloorService {
 		
 		return responseEntity;
 	}
-		throw new IDNotFoundException(" Hospital id"+id+"not found");
+		throw new IDNotFoundException(" Floor id"+id+"not found");
 	}
 
 	@Override
@@ -116,7 +114,7 @@ public class FloorServiceImpl implements FloorService {
 		if(floorDao.deleteFloor(id)) {
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");
-		responseStructure.setData("Hospital deleted");
+		responseStructure.setData("Floor deleted");
 		responseEntity=new ResponseEntity<ResponseStructure<String>>(responseStructure,HttpStatus.OK);
 		return responseEntity;
 	}

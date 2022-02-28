@@ -38,7 +38,7 @@ public class FloorController {
 	@PutMapping("branch/floor/{floorid}")
 	@ApiOperation("To Update Floor By Id")
 	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<Floor>> updateFloor(@PathVariable int floorid,@RequestBody Floor floor) {
+	public ResponseEntity<ResponseStructure<Floor>> updateFloor(@RequestBody Floor floor,@PathVariable int floorid) {
 		return floorService.updateFloor(floorid, floor);
 	}
 

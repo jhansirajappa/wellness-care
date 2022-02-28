@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.BranchDao;
+import com.ty.wellness_care.dto.Bed;
 import com.ty.wellness_care.dto.Branch;
 import com.ty.wellness_care.repository.BranchRepository;
 
@@ -23,8 +24,9 @@ public class BranchDaoImpl implements BranchDao{
 
 	@Override
 	public Branch updateBranch(int id, Branch branch) {
-		if (getBranchById(id) != null) {
-			branch.setId(id);
+		Branch branch2=getBranchById(id);
+		if (branch2 != null) {
+			branch.setId(branch2.getId());
 			return repositry.save(branch);
 		}
 		return null;

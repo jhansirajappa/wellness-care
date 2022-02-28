@@ -32,10 +32,8 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Hospital>> updateHospital(int id, Hospital hospital) {
-		Hospital hospitalid = hospitalDao.getHospitalById(id);
+		Hospital hospitalid = hospitalDao.updateHospital(id, hospital);
 		if (hospitalid != null) {
-			hospital.setId(hospitalid.getId());
-			hospitalDao.updateHospital(id, hospital);
 			ResponseStructure<Hospital> responseStructure = new ResponseStructure<Hospital>();
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("success");

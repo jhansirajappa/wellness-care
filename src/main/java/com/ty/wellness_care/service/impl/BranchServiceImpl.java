@@ -32,15 +32,13 @@ public class BranchServiceImpl implements BranchService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Branch>> updateBranch(int id, Branch branch) {
-		Branch branch2= branchDao.getBranchById(id);
+		Branch branch2= branchDao.updateBranch(id, branch);
 		
 		if(branch2 != null) {
-			branch.setId(branch2.getId());
-			branchDao.updateBranch(id, branch);
 		ResponseStructure<Branch> responseStructure=new ResponseStructure<Branch>();
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");
-		responseStructure.setData(branch);
+		responseStructure.setData(branch2);
 		ResponseEntity<ResponseStructure<Branch>> responseEntity=new ResponseEntity<ResponseStructure<Branch>>(responseStructure,HttpStatus.OK);
 		return responseEntity;
 		}

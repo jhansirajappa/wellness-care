@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.HospitalDao;
+import com.ty.wellness_care.dto.Branch;
 import com.ty.wellness_care.dto.Hospital;
 import com.ty.wellness_care.repository.HospitalRepository;
 
@@ -23,8 +24,9 @@ public class HospitalDaoImpl implements HospitalDao{
 
 	@Override
 	public Hospital updateHospital(int id, Hospital hospital) {
-		if (getHospitalById(id) != null) {
-			hospital.setId(id);
+		Hospital hospital2=getHospitalById(id);
+		if (hospital2 != null) {
+			hospital.setId(hospital2.getId());
 			return repositry.save(hospital);
 		}
 		return null;
