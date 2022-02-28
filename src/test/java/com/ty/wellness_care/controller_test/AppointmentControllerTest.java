@@ -4,12 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -18,7 +19,7 @@ import com.ty.wellness_care.dao.AppointmentDao;
 import com.ty.wellness_care.dto.Appointment;
 
 @RunWith(SpringRunner.class)
-@SpringBootApplication
+@SpringBootTest
 public class AppointmentControllerTest {
 
 	@Autowired
@@ -31,13 +32,12 @@ public class AppointmentControllerTest {
 	public void saveAppointmentTest() {
 
 		Appointment appointment = new Appointment();
-		when(dao.saveAppointment(null)).thenReturn(appointment);
+		when(dao.saveAppointment(appointment)).thenReturn(appointment);
 		assertEquals(appointment, controller.saveAppointment(appointment).getBody().getData());
 	}
 
 	@Test
 	public void getAppointmentByIdTest() {
-
 		Appointment appointment = new Appointment();
 		when(dao.getAppointmentById(1)).thenReturn(appointment);
 		assertEquals(appointment, controller.getAppointmentById(1).getBody().getData());
@@ -71,7 +71,7 @@ public class AppointmentControllerTest {
 	public void deleteAppointmentTest() {
 
 		boolean b = true;
-		String del = "Appointment deleted";
+		String del = "Appointment Deleted";
 		when(dao.deleteAppointment(1)).thenReturn(b);
 		assertEquals(del, controller.deleteAppointment(1).getBody().getData());
 

@@ -27,21 +27,9 @@ public class AppointmentDaoImpl implements AppointmentDao {
 
 		Appointment existingAppointment = getAppointmentById(id);
 		if (existingAppointment != null) {
-			existingAppointment.setAddress(appointment.getAddress());
-			existingAppointment.setAge(appointment.getAge());
-			existingAppointment.setBranch(appointment.getBranch());
-			existingAppointment.setCountry(appointment.getCountry());
-			existingAppointment.setDateTime(appointment.getDateTime());
-			existingAppointment.setDoctor(appointment.getDoctor());
-			existingAppointment.setEmail(appointment.getEmail());
-			existingAppointment.setGender(appointment.getGender());
-			existingAppointment.setMobileNo(appointment.getMobileNo());
-			existingAppointment.setPatientName(appointment.getPatientName());
-			existingAppointment.setReason(appointment.getReason());
-			existingAppointment.setState(appointment.getState());
-			existingAppointment.setUser(appointment.getUser());
-			appointmentRepository.save(existingAppointment);
-			return existingAppointment;
+			appointment.setId(existingAppointment.getId());
+			appointmentRepository.save(appointment);
+			return appointment;
 		}
 		return null;
 	}

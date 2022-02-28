@@ -9,62 +9,72 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ty.wellness_care.controller.MedOrderController;
-import com.ty.wellness_care.controller.UserController;
 import com.ty.wellness_care.dao.MedOrderDao;
-import com.ty.wellness_care.dao.UserDao;
 import com.ty.wellness_care.dto.MedOrder;
-import com.ty.wellness_care.dto.User;
-
 
 @RunWith(SpringRunner.class)
-@SpringBootApplication
+@SpringBootTest
 public class MedOrderControllerTest {
+
 	@Autowired
-	private MedOrderController controller;
-
+	MedOrderController controller;
+	
 	@MockBean
-	private MedOrderDao dao;
-
+	MedOrderDao dao;
+	
 	@Test
 	public void saveMedOrderTest() {
 
-		MedOrder medOrder = new MedOrder();
+	MedOrder medOrder = new MedOrder();
 		when(dao.saveMedOrder(medOrder)).thenReturn(medOrder);
 		assertEquals(medOrder, controller.saveMedOrder(medOrder).getBody().getData());
 	}
-	/*
-	 * @Test public void getUserByIdTest() {
-	 * 
-	 * User user = new User(); when(dao.getUserById(1)).thenReturn(user);
-	 * assertEquals(user, controller.getUserById(1).getBody().getData());
-	 * 
-	 * }
-	 * 
-	 * @Test public void getAllUsersTest() { List<User> users = new
-	 * ArrayList<User>(); User user1 = new User(); User user2 = new User(); User
-	 * user3 = new User();
-	 * 
-	 * users.add(user1); users.add(user2); users.add(user3);
-	 * 
-	 * when(dao.getAllUsers()).thenReturn(users); assertEquals(3,
-	 * controller.getAllUsers().getBody().getData().size()); }
-	 * 
-	 * @Test public void updateUserTest() {
-	 * 
-	 * User user = new User(); when(dao.updateUser(1, user)).thenReturn(user);
-	 * assertEquals(user, controller.upddateUser(user, 1).getBody().getData()); }
-	 * 
-	 * @Test public void deleteUserTest() {
-	 * 
-	 * boolean b = true; String del = "User deleted";
-	 * when(dao.deleteUser(1)).thenReturn(b); assertEquals(del,
-	 * controller.deleteUser(1).getBody().getData());
-	 * 
-	 * }
-	 * 
-	 */}
+
+	@Test
+	public void getMedOrderByIdTest() {
+		MedOrder medOrder = new MedOrder();
+		when(dao.getMedOrderById(1)).thenReturn(medOrder);
+		assertEquals(medOrder, controller.getMedOrderById(1).getBody().getData());
+
+	}
+
+	@Test
+	public void getAllMedOrderTest() {
+		List<MedOrder> medOrders = new ArrayList<MedOrder>();
+
+		MedOrder medOrder1=new MedOrder();
+		MedOrder medOrder2=new MedOrder();
+		MedOrder medOrder3=new MedOrder();
+		medOrders.add(medOrder3);
+		medOrders.add(medOrder2);
+		medOrders.add(medOrder1);
+
+		when(dao.getAllMedOrders()).thenReturn(medOrders);
+		assertEquals(3, controller.getAllMedOrders().getBody().getData().size());
+	}
+
+	@Test
+	public void updateMedOrderTest() {
+
+		MedOrder medorder= new MedOrder();
+		when(dao.updateMedOrder(1, medorder)).thenReturn(medorder);
+		assertEquals(medorder, controller.updateMedOrder(1, medorder).getBody().getData());
+	}
+
+	@Test
+	public void deleteMedorderTest() {
+
+		boolean b = true;
+		String del = "MedOrder Deleted";
+		when(dao.deleteMedOrder(1)).thenReturn(b);
+		assertEquals(del, controller.deleteMedOrder(1).getBody().getData());
+
+	}
+
+	
+}
