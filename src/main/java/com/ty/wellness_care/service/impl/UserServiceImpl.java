@@ -68,15 +68,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user, @PathVariable int userId) {
-		User userid = userDao.getUserById(userId);
+		User userid = userDao.updateUser(userId, user);
 		if (userid != null) {
 			ResponseStructure<User> structure = new ResponseStructure<User>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");
-			structure.setData(userDao.updateUser(userId, user));
+			structure.setData(userid);
 			ResponseEntity<ResponseStructure<User>> responseEntity = new ResponseEntity<ResponseStructure<User>>(
 					structure, HttpStatus.OK);
-
 			return responseEntity;
 
 		} else {
