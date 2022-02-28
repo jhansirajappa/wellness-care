@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.FloorDao;
 import com.ty.wellness_care.dto.Floor;
+import com.ty.wellness_care.dto.Hospital;
 import com.ty.wellness_care.repository.FloorRepositry;
 
 @Repository
@@ -23,8 +24,9 @@ public class FloorDaoImpl implements FloorDao{
 
 	@Override
 	public Floor updateFloor(int id, Floor floor) {
-		if (getFloorById(id) != null) {
-			floor.setId(id);
+		Floor floor2=getFloorById(id);
+		if (floor2 != null) {
+			floor.setId(floor2.getId());
 			return repositry.save(floor);
 		}
 		return null;

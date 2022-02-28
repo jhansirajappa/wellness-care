@@ -22,8 +22,9 @@ public class BedDaoImpl implements BedDao{
 
 	@Override
 	public Bed updateBed(int id, Bed bed) {
-		if (getBedById(id) != null) {
-			bed.setId(id);
+	Bed bed2=getBedById(id);
+		if (bed2 != null) {
+			bed.setId(bed2.getId());
 			return repositry.save(bed);
 		}
 		return null;

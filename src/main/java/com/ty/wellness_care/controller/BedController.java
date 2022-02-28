@@ -52,8 +52,8 @@ public class BedController {
 	@GetMapping("room/bed/{bedid}")
 	@ApiOperation("To Get Bed By Id")
 	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<List<Bed>>> getBedById(@PathVariable int bedid) {
-		return bedService.getBedByRoom(bedid);
+	public ResponseEntity<ResponseStructure<Bed>> getBedById(@PathVariable int bedid) {
+		return bedService.getBedById(bedid);
 	}
 
 	@GetMapping("room/{roomid}/bed")

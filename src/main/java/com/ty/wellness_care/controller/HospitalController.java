@@ -61,11 +61,12 @@ public class HospitalController {
 	@ApiResponses({ @ApiResponse(code = 200, message = "Retrived User"),
 			@ApiResponse(code = 404, message = "ID not found"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<ResponseStructure<Hospital>> updateUser(@RequestParam int id,
-			@RequestBody Hospital hospital) {
+	public ResponseEntity<ResponseStructure<Hospital>> updateHospital(@RequestBody Hospital hospital,
+			@RequestParam int id) {
 		return hospitalService.updateHospital(id, hospital);
 	}
 
+	
 	@DeleteMapping("admin/hospital/{id}")
 	@ApiOperation("To Delete Hospital By Id")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Retrived User"),
