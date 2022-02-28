@@ -18,8 +18,19 @@ public class Admin {
 	
 	@OneToOne
 	private Hospital hospital;
+	
+	
 
 	
+
+	public Admin(int adminId, String email, String password, String name, Hospital hospital) {
+		super();
+		this.adminId = adminId;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.hospital = hospital;
+	}
 
 	public int getAdminId() {
 		return adminId;

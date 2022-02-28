@@ -41,7 +41,7 @@ public class AdminController {
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@PathVariable int adminid) {
 		return service.getAdminById(adminid);
-}
+	}
 
 	@GetMapping("admin")
 	@ApiResponses({@ApiResponse(code=200,message="Retrieved all the admins"),
@@ -54,7 +54,7 @@ public class AdminController {
 	@PutMapping("admin/{adminid}")@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
 		@ApiResponse(code=404,message = "Admin not updated"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<Admin>> upddateAdmin(@RequestBody Admin admin, @PathVariable int adminid) {
+	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(@RequestBody Admin admin, @PathVariable int adminid) {
 		return service.updateAdmin(admin, adminid);
 
 	}
