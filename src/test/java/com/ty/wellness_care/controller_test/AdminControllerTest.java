@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ty.wellness_care.controller.AdminController;
 import com.ty.wellness_care.dao.AdminDao;
 import com.ty.wellness_care.dto.Admin;
-import com.ty.wellness_care.dto.Hospital;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,7 +30,7 @@ public class AdminControllerTest {
 	@Test
 	public void saveAdminTest() {
 
-		Admin admin = new Admin(1, "fgdhjka", "1233", "egsahs", new Hospital());
+		Admin admin = new Admin();
 		when(dao.saveAdmin(admin)).thenReturn(admin);
 		assertEquals(admin, controller.saveAdmin(admin).getBody().getData());
 	}
@@ -39,7 +38,7 @@ public class AdminControllerTest {
 	@Test
 	public void getAdminByIdTest() {
 
-		Admin admin = new Admin(1, "fgdhjka", "1233", "egsahs", new Hospital());
+		Admin admin = new Admin();
 		when(dao.getAdminById(1)).thenReturn(admin);
 		assertEquals(admin, controller.getAdminById(1).getBody().getData());
 
@@ -48,9 +47,9 @@ public class AdminControllerTest {
 	@Test
 	public void getAllAdminsTest() {
 		List<Admin> admins = new ArrayList<Admin>();
-		Admin admin1 = new Admin(1, "fgdhjka", "1233", "egsahs", new Hospital());
-		Admin admin2 = new Admin(2, "fgdhjka", "1233", "egsahs", new Hospital());
-		Admin admin3 = new Admin(3, "fgdhjka", "1233", "egsahs", new Hospital());
+		Admin admin1 = new Admin();
+		Admin admin2 = new Admin();
+		Admin admin3 = new Admin();
 		admins.add(admin3);
 		admins.add(admin2);
 		admins.add(admin1);
@@ -62,7 +61,7 @@ public class AdminControllerTest {
 	@Test
 	public void updateAdminTest() {
 
-		Admin admin = new Admin(1, "fgdhjka", "1233", "egsahs", new Hospital());
+		Admin admin = new Admin();
 		when(dao.updateAdmin(1, admin)).thenReturn(admin);
 		assertEquals(admin, controller.updateAdmin(admin, 1).getBody().getData());
 	}

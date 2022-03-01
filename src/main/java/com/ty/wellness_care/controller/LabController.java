@@ -3,6 +3,7 @@ package com.ty.wellness_care.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,20 +60,29 @@ public class LabController {
 		return labService.getAllLab();
 	}
 
-	@PutMapping("branch/{branchid}/lab/{labid}")
-	@ApiResponses({@ApiResponse(code=200,message="Lab updated"),
-		@ApiResponse(code=404,message = "Lab not updated"),
-		@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<Lab>> updateLab(@RequestBody Lab lab, @PathVariable int branchid,
-			@PathVariable int labid) {
-		return labService.updateLab(lab, labid);
-	}
+	
 
+	@DeleteMapping("branch/lab/{id}")
+	@ApiResponses({@ApiResponse(code=200,message="Lab deleted"),
+		@ApiResponse(code=404,message = "Lab not deleted"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Lab>> getLabById(@PathVariable int id) {
+		return labService.getLabById(id);
+	}
+	
 	@DeleteMapping("branch/lab")
 	@ApiResponses({@ApiResponse(code=200,message="Lab deleted"),
 		@ApiResponse(code=404,message = "Lab not deleted"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<String>> deleteLab(@RequestParam int id) {
 		return labService.deleteLab(id);
+	}
+
+	@PutMapping("branch/{branchid}/lab/{labid}")
+	@ApiResponses({@ApiResponse(code=200,message="Lab updated"),
+		@ApiResponse(code=404,message = "Lab not updated"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Lab>> updateLab(@PathVariable int labid, @RequestBody Lab lab) {
+		return labService.updateLab(lab, labid);
 	}
 }

@@ -39,6 +39,11 @@ public class Appointment {
 	private Doctor doctor;
 	
 	
+	
+
+	public Appointment() {
+		super();
+	}
 
 	public Appointment(int id, LocalDateTime dateTime, String patientName, long mobileNo, String address, String state,
 			String country, String email, int age, String gender, String reason, User user, Branch branch,

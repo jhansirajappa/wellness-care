@@ -14,7 +14,7 @@ public interface RoomService {
 	public ResponseEntity<ResponseStructure<Room>>  updateRoom(int id,Room room);
 	public ResponseEntity<ResponseStructure<List<Room>>> getAllRoom();
 	public ResponseEntity<ResponseStructure<Room>> getRoomById( int id);
-	public ResponseEntity<ResponseStructure<List<Room>>> getRoomByFloor(int floorid);
+	public ResponseEntity<ResponseStructure<Room>> getRoomByFloor(int floorid);
 	public ResponseEntity<ResponseStructure<String>> deleteRoom(int id);
 
 }

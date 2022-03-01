@@ -1,9 +1,6 @@
 package com.ty.wellness_care.dto;
 
-<<<<<<< HEAD
-public class Branch {
 
-=======
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -93,5 +90,4 @@ public class Branch {
 	}
 	
 	
->>>>>>> f6734bf8d2e0fe50a40ddf271c97596491051d1f
 }

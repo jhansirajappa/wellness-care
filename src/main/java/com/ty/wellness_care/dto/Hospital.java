@@ -1,9 +1,6 @@
 package com.ty.wellness_care.dto;
 
-<<<<<<< HEAD
-public class Hospital {
 
-=======
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -69,5 +66,4 @@ public class Hospital {
 	}
 	
 	
->>>>>>> f6734bf8d2e0fe50a40ddf271c97596491051d1f
 }

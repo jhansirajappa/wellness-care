@@ -62,8 +62,8 @@ public class AppointmentController {
 		return appointmentService.getAppointmentById(appointmentId);
 	}
 
-	@DeleteMapping("user/appointment")
-	public ResponseEntity<ResponseStructure<String>> deleteAppointment(@RequestParam int id) {
-		return appointmentService.deleteAppointment(id);
+	@DeleteMapping("user/{userid}/appointment/{appointmentId}")
+	public ResponseEntity<ResponseStructure<String>> deleteAppointment(@PathVariable int appointmentid) {
+		return appointmentService.deleteAppointment(appointmentid);
 	}
 }
