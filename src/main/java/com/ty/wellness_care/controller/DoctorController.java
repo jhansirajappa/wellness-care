@@ -49,7 +49,7 @@ public class DoctorController {
 	}
 
 	@DeleteMapping("hospital/doctor")
-	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
+	public ResponseEntity<ResponseStructure<String>> deleteDoctor(int id) {
 		return doctorService.deleteMedOrder(id);
 	}
 

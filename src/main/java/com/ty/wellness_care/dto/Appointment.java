@@ -37,6 +37,33 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn
 	private Doctor doctor;
+	
+	
+	
+
+	public Appointment() {
+		super();
+	}
+
+	public Appointment(int id, LocalDateTime dateTime, String patientName, long mobileNo, String address, String state,
+			String country, String email, int age, String gender, String reason, User user, Branch branch,
+			Doctor doctor) {
+		super();
+		this.id = id;
+		this.dateTime = dateTime;
+		this.patientName = patientName;
+		this.mobileNo = mobileNo;
+		this.address = address;
+		this.state = state;
+		this.country = country;
+		this.email = email;
+		this.age = age;
+		this.gender = gender;
+		this.reason = reason;
+		this.user = user;
+		this.branch = branch;
+		this.doctor = doctor;
+	}
 
 	public int getId() {
 		return id;

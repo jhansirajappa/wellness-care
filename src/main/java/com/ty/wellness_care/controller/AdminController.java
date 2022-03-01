@@ -41,7 +41,7 @@ public class AdminController {
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@PathVariable int adminid) {
 		return service.getAdminById(adminid);
-}
+	}
 
 	@GetMapping("admin")
 	@ApiResponses({@ApiResponse(code=200,message="Retrieved all the admins"),

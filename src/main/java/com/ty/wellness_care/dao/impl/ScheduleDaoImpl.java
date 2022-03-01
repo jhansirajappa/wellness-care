@@ -65,4 +65,18 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		return repository.getScheduleByDoctor(doctorId);
 	}
 
+//	@Override
+//	public com.ty.wellness_care.dao.Schedule saveSchedule(com.ty.wellness_care.dao.Schedule schedule) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public com.ty.wellness_care.dao.Schedule updateSchedule(int id, com.ty.wellness_care.dao.Schedule schedule) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	
+
 }

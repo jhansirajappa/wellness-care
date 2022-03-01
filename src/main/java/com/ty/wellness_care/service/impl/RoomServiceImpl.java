@@ -95,7 +95,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<List<Room>>> getRoomByFloor(int floorid) {
+	public ResponseEntity<ResponseStructure<Room>> getRoomByFloor(int floorid) {
 		List<Room> rooms=roomDao.getRoomByFloor(floorid);
 		if(rooms != null) {
 			
@@ -104,7 +104,7 @@ public class RoomServiceImpl implements RoomService{
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");
 		responseStructure.setData(roomDao.getRoomByFloor(floorid));
-		ResponseEntity<ResponseStructure<List<Room>>> responseEntity=new ResponseEntity<ResponseStructure<List<Room>>>(responseStructure,HttpStatus.OK);
+		ResponseEntity<ResponseStructure<Room>> responseEntity=new ResponseEntity<ResponseStructure<Room>>(HttpStatus.OK);
 		return responseEntity;
 	}
 		throw new IDNotFoundException(" Hospital id"+floorid+"not found");

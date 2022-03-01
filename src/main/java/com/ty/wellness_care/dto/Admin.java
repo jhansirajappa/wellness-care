@@ -16,10 +16,22 @@ public class Admin {
 	private String email;
 	private String password;
 	private String name;
+	
+	
 
 	@ManyToOne
 	@JoinColumn
 	private Hospital hospital;
+
+	public Admin(int adminId, String email, String password, String name, Hospital hospital) {
+		super();
+		this.adminId = adminId;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.hospital = hospital;
+	}
+	
 
 	public int getAdminId() {
 		return adminId;
@@ -67,13 +79,5 @@ public class Admin {
 		super();
 	}
 
-	public Admin(int adminId, String email, String password, String name, Hospital hospital) {
-		super();
-		this.adminId = adminId;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.hospital = hospital;
-	}
-
+	
 }
