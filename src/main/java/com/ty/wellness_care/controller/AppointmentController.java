@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Appointment;
@@ -40,21 +39,18 @@ public class AppointmentController {
 	}
 
 	@GetMapping("branch/{branchid}/appointment")
-	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByBranch(@PathVariable int branchid,
-			@PathVariable int appointmentid) {
-		return appointmentService.getAppointmentByBranch(appointmentid);
+	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByBranch(@PathVariable int branchid) {
+		return appointmentService.getAppointmentByBranch(branchid);
 	}
 
 	@GetMapping("user/{userid}/appointment")
-	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByUser(@PathVariable int userid,
-			@PathVariable int appointmentid) {
-		return appointmentService.getAppointmentByUser(appointmentid);
+	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByUser(@PathVariable int userid) {
+		return appointmentService.getAppointmentByUser(userid);
 	}
 
 	@GetMapping("doctor/{doctorid}/appointment")
-	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByDoctor(@PathVariable int doctorid,
-			@PathVariable int appointmentid) {
-		return appointmentService.getAppointmentByDoctor(appointmentid);
+	public ResponseEntity<ResponseStructure<List<Appointment>>> getAppointmentByDoctor(@PathVariable int doctorid) {
+		return appointmentService.getAppointmentByDoctor(doctorid);
 	}
 
 	@GetMapping("appointment/{appointmentId}")
@@ -62,7 +58,7 @@ public class AppointmentController {
 		return appointmentService.getAppointmentById(appointmentId);
 	}
 
-	@DeleteMapping("user/{userid}/appointment/{appointmentId}")
+	@DeleteMapping("user/appointment/{appointmentid}")
 	public ResponseEntity<ResponseStructure<String>> deleteAppointment(@PathVariable int appointmentid) {
 		return appointmentService.deleteAppointment(appointmentid);
 	}

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Floor {
 
@@ -19,6 +21,7 @@ public class Floor {
 	private int floor_no;
 	
 	@OneToMany(mappedBy = "floor")
+	@JsonIgnore
 	List<Room> room;
 	
 	@ManyToOne

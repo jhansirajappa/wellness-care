@@ -63,11 +63,11 @@ public class BedController {
 		return bedService.getBedByRoom(roomid);
 	}
 
-	@DeleteMapping("room/bed")
+	@DeleteMapping("room/bed/{bedid}")
 	@ApiOperation("To Delete Bed By Id")
 	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<String>> deleteBed(@RequestParam int id) {
-		return bedService.deleteBed(id);
+	public ResponseEntity<ResponseStructure<String>> deleteBed(@PathVariable int bedid) {
+		return bedService.deleteBed(bedid);
 	}
 
 }
