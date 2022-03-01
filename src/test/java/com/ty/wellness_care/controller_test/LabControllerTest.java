@@ -71,7 +71,7 @@ public class LabControllerTest {
 	public void deleteLabTest() {
 
 		boolean b = true;
-		String del = "Lab deleted";
+		String del = "Lab Deleted";
 		when(dao.deleteLab(1)).thenReturn(b);
 		assertEquals(del, controller.deleteLab(1).getBody().getData());
 
