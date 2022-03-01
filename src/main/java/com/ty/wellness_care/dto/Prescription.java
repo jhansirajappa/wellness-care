@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Prescription {
 
@@ -27,9 +29,11 @@ public class Prescription {
 	private double totalCost;
 
 	@OneToMany(mappedBy = "prescription")
+	@JsonIgnore
 	private List<MedOrder> medOrders;
 
 	@OneToMany(mappedBy = "prescription")
+	@JsonIgnore
 	private List<Lab> labs;
 
 	@ManyToOne

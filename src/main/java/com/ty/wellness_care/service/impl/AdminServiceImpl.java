@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ty.wellness_care.dao.AdminDao;
 import com.ty.wellness_care.dto.Admin;
 import com.ty.wellness_care.service.AdminService;
+import com.ty.wellness_care.util.PasswordAES;
 import com.ty.wellness_care.util.ResponseStructure;
 
 @Service
@@ -20,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Admin>> saveAdmin(Admin admin) {
+		admin.setPassword(PasswordAES.encrypt(admin.getPassword()));
 		ResponseStructure<Admin> structure = new ResponseStructure<Admin>();
 		structure.setStatus(HttpStatus.OK.value());
 		structure.setMessage("successful");
@@ -32,7 +34,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ResponseEntity<ResponseStructure<Admin>> getAdminById(int adminId) {
 		Admin admin = adminDao.getAdminById(adminId);
+
 		if (admin != null) {
+			admin.setPassword(PasswordAES.decrypt(admin.getPassword()));
 			ResponseStructure<Admin> structure = new ResponseStructure<Admin>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successfull");
@@ -50,8 +54,10 @@ public class AdminServiceImpl implements AdminService {
 	public ResponseEntity<ResponseStructure<List<Admin>>> getAllAdmin() {
 		List<Admin> admins = adminDao.getAllAdmins();
 		ResponseStructure<List<Admin>> structure = new ResponseStructure<List<Admin>>();
-
 		if (admins != null) {
+			for (Admin admin : admins) {
+				admin.setPassword(PasswordAES.decrypt(admin.getPassword()));
+			}
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");
 			structure.setData(admins);
@@ -66,7 +72,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(Admin admin, int adminId) {
-		Admin adminid =adminDao.updateAdmin(adminId, admin);
+		admin.setPassword(PasswordAES.encrypt(admin.getPassword()));
+		Admin adminid = adminDao.updateAdmin(adminId, admin);
 		if (adminid != null) {
 			ResponseStructure<Admin> structure = new ResponseStructure<Admin>();
 			structure.setStatus(HttpStatus.OK.value());

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Hospital {
 
@@ -19,12 +21,15 @@ public class Hospital {
 	private String address;
 	
 	@OneToMany(mappedBy = "hospital")
+	@JsonIgnore
 	List<Admin> admin;
 
 	@OneToMany(mappedBy = "hospital" )
+	@JsonIgnore
 	List<Branch> branch;
 	
 	@OneToMany(mappedBy = "hospital")
+	@JsonIgnore
 	List<Doctor> doctor;
 	
 	public int getId() {

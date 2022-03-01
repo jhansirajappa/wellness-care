@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -20,6 +22,7 @@ public class User {
 	private long phone_no;
 
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Appointment> appointments;
 
 	public int getUserId() {
