@@ -34,12 +34,14 @@ public class RoomControllerTest {
 		assertEquals(room, controller.saveRoom(room).getBody().getData());
 
 	}
+	
 	@Test
 	public void updateRoomTest() {
 		Room room = new Room();
 		when(dao.updateRoom(1,room)).thenReturn(room);
 		assertEquals(room, controller.updateRoom(1, room).getBody().getData());
 	}
+	
 	@Test
 	public void getAllRooms() {
 		List<Room> rooms = new ArrayList<Room>();
@@ -54,6 +56,7 @@ public class RoomControllerTest {
 		when(dao.getAllRoom()).thenReturn(rooms);
 		assertEquals(3, controller.getAllRoom().getBody().getData().size());
 	}
+	
 	@Test
 	public void getRoomByIdTest() {
 		Room room = new Room();
