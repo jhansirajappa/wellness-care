@@ -6,15 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModel;
 
 @Entity
+@ApiModel(value = "Admin Entity", description = "Admin Entity to hold User Details")
 public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int adminId;
+	@Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Enter Proper Mail ID")
 	private String email;
+	@Size(min = 8)
 	private String password;
+	@NotNull(message = "Name cannot be null")
 	private String name;
 
 	@ManyToOne

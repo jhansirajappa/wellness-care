@@ -13,13 +13,12 @@ import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.AppointmentService;
 import com.ty.wellness_care.util.ResponseStructure;
 
-
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
 	@Autowired
 	AppointmentDao appointmentDao;
-	
+
 	@Override
 	public ResponseEntity<ResponseStructure<Appointment>> saveAppointment(Appointment appointment) {
 		ResponseStructure<Appointment> responseStructure = new ResponseStructure<Appointment>();
@@ -48,7 +47,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 		}
 
-
 	}
 
 	@Override
@@ -69,7 +67,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 
 	}
-
 
 	@Override
 	public ResponseEntity<ResponseStructure<String>> deleteAppointment(int id) {
