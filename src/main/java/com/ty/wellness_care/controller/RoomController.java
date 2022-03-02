@@ -51,8 +51,8 @@ public class RoomController {
 	@GetMapping("floor/room/{roomid}")
 	@ApiOperation("To Room By Id")
 	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<Room>> getRoomById(@PathVariable int Roomid) {
-		return roomService.getRoomById(Roomid);
+	public ResponseEntity<ResponseStructure<Room>> getRoomById(@PathVariable int roomid) {
+		return roomService.getRoomById(roomid);
 	}
 
 	@GetMapping("floor/{floorid}/room")

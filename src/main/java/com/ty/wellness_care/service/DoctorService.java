@@ -11,7 +11,7 @@ public interface DoctorService {
 
 	public ResponseEntity<ResponseStructure<Doctor>> saveDoctor(Doctor doctor);
 
-	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(int id);
+	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(int id,Doctor doctor);
 
 	public ResponseEntity<ResponseStructure<List<Doctor>>> getAllDoctor();
 

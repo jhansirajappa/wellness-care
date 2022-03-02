@@ -62,12 +62,12 @@ public class LabController {
 
 	
 
-	@DeleteMapping("branch/lab/{id}")
+	@DeleteMapping("branch/lab/{labid}")
 	@ApiResponses({@ApiResponse(code=200,message="Lab deleted"),
 		@ApiResponse(code=404,message = "Lab not deleted"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<Lab>> getLabById(@PathVariable int id) {
-		return labService.getLabById(id);
+	public ResponseEntity<ResponseStructure<Lab>> getLabById(@PathVariable int labid) {
+		return labService.getLabById(labid);
 	}
 	
 	@DeleteMapping("branch/lab")
