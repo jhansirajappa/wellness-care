@@ -28,7 +28,7 @@ public class DoctorController {
 	}
 
 	@PutMapping("hospital/doctor/{doctorid}")
-	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int doctorid,Doctor doctor) {
+	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int doctorid,@RequestBody Doctor doctor) {
 		return doctorService.updateDoctor(doctorid,doctor);
 	}
 
