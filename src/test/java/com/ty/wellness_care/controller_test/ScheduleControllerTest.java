@@ -39,7 +39,7 @@ public class ScheduleControllerTest {
 	public void updateScheduleTest() {
 		Schedule schedule = new Schedule();
 		when(dao.updateSchedule(1,schedule)).thenReturn(schedule);
-		assertEquals(schedule, controller.updateSchedule(schedule,1,1).getBody().getData());
+		assertEquals(schedule, controller.updateSchedule(schedule,1).getBody().getData());
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class ScheduleControllerTest {
 	public void getScheduleByIdTest() {
 		Schedule schedule = new Schedule();
 		when(dao.getScheduleById(1)).thenReturn(schedule);
-		assertEquals(schedule, controller.getScheduleById(1,1).getBody().getData());	
+		assertEquals(schedule, controller.getScheduleById(1).getBody().getData());	
 	}
 	
 	@Test
