@@ -16,8 +16,6 @@ public class Admin {
 	private String email;
 	private String password;
 	private String name;
-	
-	
 
 	@ManyToOne
 	@JoinColumn
@@ -31,7 +29,6 @@ public class Admin {
 		this.name = name;
 		this.hospital = hospital;
 	}
-	
 
 	public int getAdminId() {
 		return adminId;
@@ -73,11 +70,8 @@ public class Admin {
 		this.hospital = hospital;
 	}
 
-	
-	
 	public Admin() {
 		super();
 	}
 
-	
 }
