@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -15,8 +17,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String name;
-	private String email;
+	@Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Enter Proper Mail ID")
+	private String email;	
+	@Size(min = 8)
 	private String password;
+	@Size(min = 10)
 	private long phone_no;
 
 	@OneToMany(mappedBy = "user")

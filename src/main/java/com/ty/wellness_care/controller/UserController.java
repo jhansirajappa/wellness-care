@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class UserController {
 	@ApiResponses({@ApiResponse(code=200,message="User Saved"),
 		@ApiResponse(code=404,message = "User not saved"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user) {
+	public ResponseEntity<ResponseStructure<User>> saveUser(@Validated @RequestBody User user) {
 		return userService.saveUser(user);
 	}
 

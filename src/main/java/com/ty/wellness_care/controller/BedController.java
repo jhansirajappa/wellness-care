@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Bed;
-import com.ty.wellness_care.repository.BedRepository;
 import com.ty.wellness_care.service.BedService;
 import com.ty.wellness_care.util.ResponseStructure;
 

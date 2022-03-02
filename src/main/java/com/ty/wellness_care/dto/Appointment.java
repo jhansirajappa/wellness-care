@@ -8,19 +8,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import io.swagger.annotations.ApiModel;
 
 @Entity
+@ApiModel(value = "Appointment Entity", description = "Appointment Entity to hold User Details")
 public class Appointment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private LocalDateTime dateTime;
+	@NotNull(message = "Patient Name cannot be null")
 	private String patientName;
 	private long mobileNo;
 	private String address;
 	private String state;
 	private String country;
+	@Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Enter Proper Mail ID")
 	private String email;
 	private int age;
 	private String gender;
