@@ -25,12 +25,11 @@ public class DoctorController {
 	@PostMapping("hospital/doctor")
 	public ResponseEntity<ResponseStructure<Doctor>> saveDoctor(@RequestBody Doctor doctor) {
 		return doctorService.saveDoctor(doctor);
-
 	}
 
 	@PutMapping("hospital/doctor/{doctorid}")
-	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int id, @RequestBody Doctor doctor) {
-		return doctorService.updateDoctor(id, doctor);
+	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(@PathVariable int doctorid,Doctor doctor) {
+		return doctorService.updateDoctor(doctorid,doctor);
 	}
 
 	@GetMapping("hospital/doctor")
@@ -38,9 +37,9 @@ public class DoctorController {
 		return doctorService.getAllDoctor();
 	}
 
-	@GetMapping("hospital/doctor/{doctorid}")
-	public ResponseEntity<ResponseStructure<Doctor>> getDoctorById(@PathVariable int id) {
-		return doctorService.getDoctorById(id);
+	@GetMapping("doctor/{doctorid}")
+	public ResponseEntity<ResponseStructure<Doctor>> getDoctorById(@PathVariable int doctorid) {
+		return doctorService.getDoctorById(doctorid);
 	}
 
 	@GetMapping("hospital/{hospitalid}/doctor")
@@ -48,9 +47,9 @@ public class DoctorController {
 		return doctorService.getDoctorByHospital(hospitalid);
 	}
 
-	@DeleteMapping("hospital/doctor")
-	public ResponseEntity<ResponseStructure<String>> deleteDoctor(int id) {
-		return doctorService.deleteMedOrder(id);
+	@DeleteMapping("hospital/doctor/{doctorid}")
+	public ResponseEntity<ResponseStructure<String>> deleteDoctor(@PathVariable int docid) {
+		return doctorService.deleteMedOrder(docid);
 	}
 
 }

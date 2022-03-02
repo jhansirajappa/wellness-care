@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Doctor {
 
@@ -24,12 +26,15 @@ public class Doctor {
 	private String password;
 
 	@OneToMany(mappedBy = "doctor")
+	@JsonIgnore
 	private List<Schedule> schedule;
 
 	@OneToMany(mappedBy = "doctor")
+	@JsonIgnore
 	private List<Appointment> appointments;
 
 	@OneToMany(mappedBy = "doctor")
+	@JsonIgnore
 	private List<Prescription> prescriptions;
 
 	@ManyToOne

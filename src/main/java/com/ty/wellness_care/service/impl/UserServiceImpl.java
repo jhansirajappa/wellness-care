@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ty.wellness_care.dao.UserDao;
+import com.ty.wellness_care.dto.Admin;
 import com.ty.wellness_care.dto.User;
 import com.ty.wellness_care.service.UserService;
+import com.ty.wellness_care.util.PasswordAES;
 import com.ty.wellness_care.util.ResponseStructure;
 
 @Service
@@ -22,19 +24,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
+		user.setPassword(PasswordAES.encrypt(user.getPassword()));
+		User user2=userDao.saveUser(user);
+		user2.setPassword(PasswordAES.decrypt(user2.getPassword()));
+		if(user2!=null) {
 		ResponseStructure<User> structure = new ResponseStructure<User>();
 		structure.setStatus(HttpStatus.OK.value());
 		structure.setMessage("successful");
-		structure.setData(userDao.saveUser(user));
+		structure.setData(user2);
 		ResponseEntity<ResponseStructure<User>> responseEntity = new ResponseEntity<ResponseStructure<User>>(structure,
 				HttpStatus.OK);
 		return responseEntity;
 	}
+		return null;}
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> getUserById(int userId) {
 		User user = userDao.getUserById(userId);
 		if (user != null) {
+			user.setPassword(PasswordAES.decrypt(user.getPassword()));
 			ResponseStructure<User> structure = new ResponseStructure<User>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successfull");
@@ -54,6 +62,9 @@ public class UserServiceImpl implements UserService {
 		ResponseStructure<List<User>> structure = new ResponseStructure<List<User>>();
 
 		if (users != null) {
+			for (User user : users) {
+				user.setPassword(PasswordAES.decrypt(user.getPassword()));
+			}
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");
 			structure.setData(users);
@@ -61,15 +72,15 @@ public class UserServiceImpl implements UserService {
 					structure, HttpStatus.OK);
 
 			return reponseEntity;
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user, @PathVariable int userId) {
 		User userid = userDao.updateUser(userId, user);
 		if (userid != null) {
+//			user.setPassword(PasswordAES.encrypt(user.getPassword()));
 			ResponseStructure<User> structure = new ResponseStructure<User>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");

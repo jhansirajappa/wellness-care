@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -25,6 +27,7 @@ public class User {
 	private long phone_no;
 
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Appointment> appointments;
 
 	public int getUserId() {
