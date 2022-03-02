@@ -36,24 +36,24 @@ public class UserController {
 	}
 
 	@GetMapping("user/{userid}")
-	@ApiResponses({@ApiResponse(code=200,message="Admin retrieved"),
-		@ApiResponse(code=404,message = "Admin not retrieved"),
+	@ApiResponses({@ApiResponse(code=200,message="user retrieved"),
+		@ApiResponse(code=404,message = "user not retrieved"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<User>> getUserById(@PathVariable int userid) {
 		return userService.getUserById(userid);
 	}
 
 	@GetMapping("user")
-	@ApiResponses({@ApiResponse(code=200,message="Admins retrived"),
-		@ApiResponse(code=404,message = "Admin not retrieved"),
+	@ApiResponses({@ApiResponse(code=200,message="user retrived"),
+		@ApiResponse(code=404,message = "user not retrieved"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<User>>> getAllUsers() {
 		return userService.getAllUsers();
 	}
 
 	@PutMapping("user/{userid}")
-	@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
-		@ApiResponse(code=404,message = "Admin not updated"),
+	@ApiResponses({@ApiResponse(code=200,message="user updated"),
+		@ApiResponse(code=404,message = "user not updated"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<User>> upddateUser(@RequestBody User user, @PathVariable int userid) {
 		return userService.updateUser(user, userid);
@@ -61,8 +61,8 @@ public class UserController {
 	}
 
 	@DeleteMapping("user")
-	@ApiResponses({@ApiResponse(code=200,message="Admin deleted"),
-		@ApiResponse(code=404,message = "Admin not deleted"),
+	@ApiResponses({@ApiResponse(code=200,message="user deleted"),
+		@ApiResponse(code=404,message = "user not deleted"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<String>> deleteUser(@RequestParam int id) {
 		return userService.deleteUser(id);

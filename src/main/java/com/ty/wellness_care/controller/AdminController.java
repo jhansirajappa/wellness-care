@@ -52,7 +52,8 @@ public class AdminController {
 		return service.getAllAdmin();
 	}
 
-	@PutMapping("admin/{adminid}")@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
+	@PutMapping("admin/{adminid}")
+	@ApiResponses({@ApiResponse(code=200,message="Admin updated"),
 		@ApiResponse(code=404,message = "Admin not updated"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(@RequestBody Admin admin, @PathVariable int adminid) {
@@ -60,7 +61,8 @@ public class AdminController {
 
 	}
 
-	@DeleteMapping("admin")@ApiResponses({@ApiResponse(code=200,message="Admin deleted"),
+	@DeleteMapping("admin")
+		@ApiResponses({@ApiResponse(code=200,message="Admin deleted"),
 		@ApiResponse(code=404,message = "Admin not deleted"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<String>> deleteAdmin(@RequestParam int id) {

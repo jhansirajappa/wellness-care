@@ -23,6 +23,7 @@ public class User {
 	private String email;	
 	@Size(min = 8)
 	private String password;
+
 	private long phone_no;
 
 	@OneToMany(mappedBy = "user")

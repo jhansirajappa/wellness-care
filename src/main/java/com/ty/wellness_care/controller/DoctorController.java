@@ -37,7 +37,7 @@ public class DoctorController {
 		return doctorService.getAllDoctor();
 	}
 
-	@GetMapping("doctor/{doctorid}")
+	@GetMapping("hospital/doctor/{doctorid}")
 	public ResponseEntity<ResponseStructure<Doctor>> getDoctorById(@PathVariable int doctorid) {
 		return doctorService.getDoctorById(doctorid);
 	}
