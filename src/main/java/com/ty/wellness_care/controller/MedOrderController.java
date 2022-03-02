@@ -30,7 +30,7 @@ public class MedOrderController {
 	@ApiResponses({ @ApiResponse(code = 200, message = "Medorder Saved"),
 			@ApiResponse(code = 404, message = "Medorder not saved"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<ResponseStructure<MedOrder>> saveMedOrder(MedOrder medOrder) {
+	public ResponseEntity<ResponseStructure<MedOrder>> saveMedOrder(@RequestBody MedOrder medOrder) {
 		return medOrderService.saveMedOrder(medOrder);
 	}
 

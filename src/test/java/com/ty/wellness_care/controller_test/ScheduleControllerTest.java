@@ -21,7 +21,6 @@ import com.ty.wellness_care.dto.Schedule;
 @SpringBootTest
 public class ScheduleControllerTest {
 
-
 	@MockBean
 	private ScheduleController controller;
 	@Autowired
@@ -35,12 +34,14 @@ public class ScheduleControllerTest {
 		assertEquals(schedule, controller.saveSchedule(schedule).getBody().getData());
 
 	}
+	
 	@Test
 	public void updateScheduleTest() {
 		Schedule schedule = new Schedule();
 		when(dao.updateSchedule(1,schedule)).thenReturn(schedule);
-		assertEquals(schedule, controller.updateSchedule(schedule,1,1).getBody().getData());
+		assertEquals(schedule, controller.updateSchedule(schedule,1).getBody().getData());
 	}
+	
 	@Test
 	public void getAllSchedules() {
 		List<Schedule> schedules = new ArrayList<Schedule>();
@@ -55,11 +56,12 @@ public class ScheduleControllerTest {
 		when(dao.getAllSchedules()).thenReturn(schedules);
 		assertEquals(3, controller.getAllSchedules().getBody().getData().size());
 	}
+	
 	@Test
 	public void getScheduleByIdTest() {
 		Schedule schedule = new Schedule();
 		when(dao.getScheduleById(1)).thenReturn(schedule);
-		assertEquals(schedule, controller.getScheduleById(1,1).getBody().getData());	
+		assertEquals(schedule, controller.getScheduleById(1).getBody().getData());	
 	}
 	
 	@Test
