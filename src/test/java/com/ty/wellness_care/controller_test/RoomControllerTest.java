@@ -61,4 +61,13 @@ public class RoomControllerTest {
 		assertEquals(room, controller.getRoomById(1).getBody().getData());	
 	}
 	
+	@Test
+	public void deleteRoomTest() {
+
+		boolean b = true;
+		String del = "Room Deleted";
+		when(dao.deleteRoom(1)).thenReturn(b);
+		assertEquals(del, controller.deleteRoom(1).getBody().getData());
+
+	}
 }

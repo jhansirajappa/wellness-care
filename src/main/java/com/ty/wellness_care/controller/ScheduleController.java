@@ -20,7 +20,7 @@ import com.ty.wellness_care.util.ResponseStructure;
 @RestController
 public class ScheduleController {
 
-	@Autowired
+	@Autowired 
 	ScheduleService service;
 
 	@PostMapping("doctor/schedule")
@@ -40,13 +40,13 @@ public class ScheduleController {
 	}
 
 	@GetMapping("branch/{branchid}/schedule")
-	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByBranch(@PathVariable int hospitalId) {
-		return service.getScheduleByBranch(hospitalId);
+	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByBranch(@PathVariable int branchid) {
+		return service.getScheduleByBranch(branchid);
 	}
 
 	@GetMapping("doctor/{doctorid}/schedule")
-	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByDoctor(@PathVariable int doctorId) {
-		return service.getScheduleByDoctor(doctorId);
+	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByDoctor(@PathVariable int doctorid) {
+		return service.getScheduleByDoctor(doctorid);
 	}
 
 	@PutMapping("doctor/{doctorid}/schedule/{scheduleid}")

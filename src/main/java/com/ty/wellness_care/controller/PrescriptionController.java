@@ -29,9 +29,9 @@ public class PrescriptionController {
 	}
 
 	@PutMapping("doctor/prescription/{prescriptionid}")
-	public ResponseEntity<ResponseStructure<Prescription>> updatePrescription(@PathVariable int id,
-			@RequestBody Prescription prescriptionId) {
-		return prescriptionService.updatePrescription(id, prescriptionId);
+	public ResponseEntity<ResponseStructure<Prescription>> updatePrescription(@PathVariable int prescriptionid,
+			@RequestBody Prescription prescription) {
+		return prescriptionService.updatePrescription(prescriptionid, prescription);
 	}
 
 	@GetMapping("doctor/prescription")
@@ -45,8 +45,8 @@ public class PrescriptionController {
 	}
 
 	@GetMapping("doctor/prescription/{prescriptionid}")
-	public ResponseEntity<ResponseStructure<Prescription>> getPrescriptionById(@PathVariable int prescriptionId) {
-		return prescriptionService.getPrescriptionById(prescriptionId);
+	public ResponseEntity<ResponseStructure<Prescription>> getPrescriptionById(@PathVariable int prescriptionid) {
+		return prescriptionService.getPrescriptionById(prescriptionid);
 	}
 
 	@DeleteMapping("doctor/prescription")
