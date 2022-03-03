@@ -78,7 +78,7 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id, Doctor doctor) {
+	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
 		if (doctorDao.deleteDoctor(id)) {
 			ResponseStructure<String> responseStructure = new ResponseStructure<String>();
 			responseStructure.setStatus(HttpStatus.OK.value());
