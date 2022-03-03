@@ -49,8 +49,8 @@ public class DoctorController {
 	}
 
 	@DeleteMapping("hospital/doctor")
-	public ResponseEntity<ResponseStructure<String>> deleteDoctor(@RequestParam int docid, @RequestBody Doctor doctor) {
-		return doctorService.deleteMedOrder(docid,doctor);
+	public ResponseEntity<ResponseStructure<String>> deleteDoctor(@RequestParam int docid) {
+		return doctorService.deleteMedOrder(docid);
 	}
 
 }
