@@ -21,9 +21,9 @@ import com.ty.wellness_care.dto.Schedule;
 @SpringBootTest
 public class ScheduleControllerTest {
 
-	@MockBean
-	private ScheduleController controller;
 	@Autowired
+	private ScheduleController controller;
+	@MockBean
 	private ScheduleDao dao;
 
 	@Test

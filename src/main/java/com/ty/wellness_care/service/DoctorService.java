@@ -19,7 +19,7 @@ public interface DoctorService {
 
 	public ResponseEntity<ResponseStructure<List<Doctor>>> getDoctorByHospital(int hospitalid);
 
-	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id);
+	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id, Doctor doctor);
 
 
 }

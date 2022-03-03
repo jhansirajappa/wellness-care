@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Doctor;
@@ -47,9 +48,9 @@ public class DoctorController {
 		return doctorService.getDoctorByHospital(hospitalid);
 	}
 
-	@DeleteMapping("hospital/doctor/{doctorid}")
-	public ResponseEntity<ResponseStructure<String>> deleteDoctor(@PathVariable int docid) {
-		return doctorService.deleteMedOrder(docid);
+	@DeleteMapping("hospital/doctor")
+	public ResponseEntity<ResponseStructure<String>> deleteDoctor(@RequestParam int docid, @RequestBody Doctor doctor) {
+		return doctorService.deleteMedOrder(docid,doctor);
 	}
 
 }

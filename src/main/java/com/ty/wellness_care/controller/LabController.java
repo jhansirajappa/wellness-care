@@ -61,7 +61,7 @@ public class LabController {
 
 	
 
-	@DeleteMapping("branch/lab/{labid}")
+	@GetMapping("branch/lab/{labid}")
 	@ApiResponses({@ApiResponse(code=200,message="Lab deleted"),
 		@ApiResponse(code=404,message = "Lab not deleted"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
@@ -77,7 +77,7 @@ public class LabController {
 		return labService.deleteLab(id);
 	}
 
-	@PutMapping("branch/{branchid}/lab/{labid}")
+	@PutMapping("branch/lab/{labid}")
 	@ApiResponses({@ApiResponse(code=200,message="Lab updated"),
 		@ApiResponse(code=404,message = "Lab not updated"),
 		@ApiResponse(code=500,message = "Internal Server Error")})
