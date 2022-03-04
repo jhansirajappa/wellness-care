@@ -29,7 +29,9 @@ public class RoomController {
 	
 	@PostMapping("floor/room")
 	@ApiOperation("To Save Room")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),
+		@ApiResponse(code=404,message = "ID not found"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Room>> saveRoom(@RequestBody Room room) {
 		return roomService.saveRoom(room);
 	}
