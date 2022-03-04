@@ -68,11 +68,11 @@ public class DoctorControllerTest {
 
 	@Test
 	public void deleteDoctorTest() {
-
+		Doctor doctor = new Doctor();
 		boolean b = true;
 		String del = "Doctor Deleted";
 		when(dao.deleteDoctor(1)).thenReturn(b);
-		assertEquals(del, controller.deleteDoctor(1).getBody().getData());
+		assertEquals(del, controller.deleteDoctor(1,doctor).getBody().getData());
 
 	}
 
