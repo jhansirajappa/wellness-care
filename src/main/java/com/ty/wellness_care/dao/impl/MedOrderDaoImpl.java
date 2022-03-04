@@ -1,12 +1,14 @@
 package com.ty.wellness_care.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.MedOrderDao;
 import com.ty.wellness_care.dto.MedOrder;
+import com.ty.wellness_care.dto.Prescription;
 import com.ty.wellness_care.repository.MedOrderRepository;
 
 @Repository
@@ -39,7 +41,12 @@ public class MedOrderDaoImpl implements MedOrderDao {
 
 	@Override
 	public MedOrder getMedOrderById(int id) {
-		return medOrderRepository.getById(id);
+		Optional<MedOrder> optional = medOrderRepository.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+		
 	}
 
 	@Override

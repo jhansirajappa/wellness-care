@@ -33,13 +33,19 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Doctor>> updateDoctor(int id, Doctor doctor) {
-		ResponseStructure<Doctor> responseStructure = new ResponseStructure<Doctor>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(doctorDao.updateDoctor(id, doctor));
-		ResponseEntity<ResponseStructure<Doctor>> responseEntity = new ResponseEntity<ResponseStructure<Doctor>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
+		Doctor doctor2 = doctorDao.updateDoctor(id, doctor);
+		if (doctor2 != null) {
+			ResponseStructure<Doctor> responseStructure = new ResponseStructure<Doctor>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData(doctorDao.updateDoctor(id, doctor));
+			ResponseEntity<ResponseStructure<Doctor>> responseEntity = new ResponseEntity<ResponseStructure<Doctor>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+			throw new IDNotFoundException("Doctor Id: " + id + " not found/exists");
+		}
+
 	}
 
 	@Override
@@ -56,13 +62,18 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public ResponseEntity<ResponseStructure<Doctor>> getDoctorById(int id) {
 
-		ResponseStructure<Doctor> responseStructure = new ResponseStructure<Doctor>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(doctorDao.getDoctorById(id));
-		ResponseEntity<ResponseStructure<Doctor>> responseEntity = new ResponseEntity<ResponseStructure<Doctor>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
+		Doctor doctor = doctorDao.getDoctorById(id);
+		if (doctor != null) {
+			ResponseStructure<Doctor> responseStructure = new ResponseStructure<Doctor>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData(doctorDao.getDoctorById(id));
+			ResponseEntity<ResponseStructure<Doctor>> responseEntity = new ResponseEntity<ResponseStructure<Doctor>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+			throw new IDNotFoundException("Doctor Id: " + id + " not found/exists");
+		}
 
 	}
 
@@ -79,6 +90,8 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {
+	
+		
 		if (doctorDao.deleteDoctor(id)) {
 			ResponseStructure<String> responseStructure = new ResponseStructure<String>();
 			responseStructure.setStatus(HttpStatus.OK.value());

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Floor;
-import com.ty.wellness_care.repository.FloorRepositry;
 import com.ty.wellness_care.service.FloorService;
 import com.ty.wellness_care.util.ResponseStructure;
 
