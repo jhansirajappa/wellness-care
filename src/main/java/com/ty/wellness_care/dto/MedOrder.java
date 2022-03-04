@@ -15,6 +15,7 @@ public class MedOrder {
 	private int medOrderId;
 	private String name;
 	private String suggestions;
+	private double cost;
 
 	@ManyToOne
 	@JoinColumn
@@ -26,6 +27,14 @@ public class MedOrder {
 
 	public void setMedOrderId(int medOrderId) {
 		this.medOrderId = medOrderId;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
 	public String getName() {
@@ -52,7 +61,4 @@ public class MedOrder {
 		this.prescription = prescription;
 	}
 
-
-	
-	
 }
