@@ -17,6 +17,9 @@ import com.ty.wellness_care.dto.Schedule;
 import com.ty.wellness_care.service.ScheduleService;
 import com.ty.wellness_care.util.ResponseStructure;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 public class ScheduleController {
 
@@ -24,38 +27,58 @@ public class ScheduleController {
 	ScheduleService service;
 
 	@PostMapping("doctor/schedule")
+	@ApiResponses({@ApiResponse(code=200,message="Schedule Saved"),
+		@ApiResponse(code=404,message = "Schedule not saved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Schedule>> saveSchedule(@RequestBody Schedule schedule) {
 		return service.saveSchedule(schedule);
 	}
 
-	@GetMapping("doctor/{doctorid}/schedule/{scheduleid}")
-	public ResponseEntity<ResponseStructure<Schedule>> getScheduleById(@PathVariable int scheduleid,
-			@PathVariable int doctorid) {
-		return service.getScheduleById(doctorid);
+	@GetMapping("doctor/schedule/{scheduleid}")
+	@ApiResponses({@ApiResponse(code=200,message="get Schedule by Id"),
+		@ApiResponse(code=404,message = "Schedule not found"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Schedule>> getScheduleById(@PathVariable int scheduleid) {
+		return service.getScheduleById(scheduleid);
 	}
 
 	@GetMapping("doctor/schedule")
+	@ApiResponses({@ApiResponse(code=200,message="get all Schedules"),
+		@ApiResponse(code=404,message = "no Schedule found"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Schedule>>> getAllSchedules() {
 		return service.getAllSchedules();
 	}
 
 	@GetMapping("branch/{branchid}/schedule")
+	@ApiResponses({@ApiResponse(code=200,message="get Schedule by branch id"),
+		@ApiResponse(code=404,message = "Branch Id not found"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByBranch(@PathVariable int branchid) {
 		return service.getScheduleByBranch(branchid);
 	}
 
 	@GetMapping("doctor/{doctorid}/schedule")
+	@ApiResponses({@ApiResponse(code=200,message="Admin retrieved"),
+		@ApiResponse(code=404,message = "Admin not retrieved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Schedule>>> getScheduleByDoctor(@PathVariable int doctorid) {
 		return service.getScheduleByDoctor(doctorid);
 	}
 
-	@PutMapping("doctor/{doctorid}/schedule/{scheduleid}")
+	@PutMapping("doctor/schedule/{scheduleid}")
+	@ApiResponses({@ApiResponse(code=200,message="Schedule updated"),
+		@ApiResponse(code=404,message = "Schedule not updated"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Schedule>> updateSchedule(@RequestBody Schedule schedule,
-			@PathVariable int scheduleid, @PathVariable int doctorid) {
-		return service.updateSchedule(doctorid, schedule);
+			@PathVariable int scheduleid) {
+		return service.updateSchedule(scheduleid, schedule);
 	}
 
 	@DeleteMapping("doctor/schedule")
+	@ApiResponses({@ApiResponse(code=200,message="Schedule deleted"),
+		@ApiResponse(code=404,message = "Schedule not retrieved"),
+		@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<String>> deleteSchedule(@RequestParam int id) {
 		return service.deleteSchedule(id);
 	}

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.ty.wellness_care.dao.UserDao;
 import com.ty.wellness_care.dto.Admin;
 import com.ty.wellness_care.dto.User;
+import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.UserService;
 import com.ty.wellness_care.util.PasswordAES;
 import com.ty.wellness_care.util.ResponseStructure;
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
 			return responseEntity;
 		} else {
-			return null;
+			throw new IDNotFoundException();
 		}
 	}
 
@@ -72,15 +73,14 @@ public class UserServiceImpl implements UserService {
 					structure, HttpStatus.OK);
 
 			return reponseEntity;
-		}
-		return null;
-	}
+		}else {
+		throw new IDNotFoundException();	}}
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user, @PathVariable int userId) {
 		User userid = userDao.updateUser(userId, user);
 		if (userid != null) {
-//			user.setPassword(PasswordAES.encrypt(user.getPassword()));
+			user.setPassword(PasswordAES.encrypt(user.getPassword()));
 			ResponseStructure<User> structure = new ResponseStructure<User>();
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setMessage("successful");
@@ -90,8 +90,7 @@ public class UserServiceImpl implements UserService {
 			return responseEntity;
 
 		} else {
-			return null;
-		}
+			throw new IDNotFoundException();		}
 
 	}
 
@@ -107,8 +106,7 @@ public class UserServiceImpl implements UserService {
 			responseEntity = new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.OK);
 			return responseEntity;
 		} else {
-			return null;
-		}
+			throw new IDNotFoundException();		}
 
 	}
 

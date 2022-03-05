@@ -28,7 +28,7 @@ public class BranchController {
 
 	}
 
-	@PutMapping("hospital/branch/{branchid}")
+	@PutMapping("hospital/branch/{id}")
 	public ResponseEntity<ResponseStructure<Branch>> updateBranch(@RequestBody Branch branch, @PathVariable int id) {
 		return branchService.updateBranch(id, branch);
 	}
@@ -38,13 +38,13 @@ public class BranchController {
 		return branchService.getAllBranch();
 	}
 
-	@GetMapping("hospital/branch/{branchid}")
+	@GetMapping("hospital/branch/{id}")
 	public ResponseEntity<ResponseStructure<Branch>> getBranchById(@PathVariable int id) {
 		return branchService.getBranchById(id);
 	}
 
 	@GetMapping("hospital/{hospitalid}/branch")
-	public ResponseEntity<ResponseStructure<List<Branch>>> getBranchByHospital(int hospitalid) {
+	public ResponseEntity<ResponseStructure<List<Branch>>> getBranchByHospital(@PathVariable int hospitalid) {
 		return branchService.getBranchByHospital(hospitalid);
 	}
 
