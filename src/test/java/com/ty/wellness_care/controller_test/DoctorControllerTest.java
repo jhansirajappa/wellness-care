@@ -72,7 +72,7 @@ public class DoctorControllerTest {
 		boolean b = true;
 		String del = "Doctor Deleted";
 		when(dao.deleteDoctor(1)).thenReturn(b);
-		assertEquals(del, controller.deleteDoctor(1,doctor).getBody().getData());
+		assertEquals(del, controller.deleteDoctor(1).getBody().getData());
 
 	}
 
