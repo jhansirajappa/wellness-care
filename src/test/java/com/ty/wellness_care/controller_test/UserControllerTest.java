@@ -64,7 +64,7 @@ class UserControllerTest {
 
 		User user = new User();
 		when(dao.updateUser(1, user)).thenReturn(user);
-		assertEquals(user, controller.upddateUser(user, 1).getBody().getData());
+		assertEquals(user, controller.updateUser(user, 1).getBody().getData());
 	}
 
 	@Test

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.ty.wellness_care.dto.Admin;
+import com.ty.wellness_care.dto.Login;
 import com.ty.wellness_care.util.ResponseStructure;
 
 public interface AdminService {
@@ -18,5 +19,6 @@ public interface AdminService {
 
 	public ResponseEntity<ResponseStructure<String>> deleteAdmin(int adminId);
 
+	public ResponseEntity<ResponseStructure<Admin>> validateAdmin(Login login);
 
 }

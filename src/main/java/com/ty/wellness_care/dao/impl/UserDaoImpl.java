@@ -60,4 +60,9 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	@Override
+	public User validateUser(String email, String password) {
+		return userRepository.validateUser(email, password);
+	}
+
 }

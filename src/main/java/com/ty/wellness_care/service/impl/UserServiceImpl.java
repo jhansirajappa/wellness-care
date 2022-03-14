@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ty.wellness_care.dao.UserDao;
-import com.ty.wellness_care.dto.Admin;
+import com.ty.wellness_care.dto.Login;
 import com.ty.wellness_care.dto.User;
 import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.UserService;
@@ -26,18 +26,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
 		user.setPassword(PasswordAES.encrypt(user.getPassword()));
-		User user2=userDao.saveUser(user);
+		User user2 = userDao.saveUser(user);
 		user2.setPassword(PasswordAES.decrypt(user2.getPassword()));
-		if(user2!=null) {
-		ResponseStructure<User> structure = new ResponseStructure<User>();
-		structure.setStatus(HttpStatus.OK.value());
-		structure.setMessage("successful");
-		structure.setData(user2);
-		ResponseEntity<ResponseStructure<User>> responseEntity = new ResponseEntity<ResponseStructure<User>>(structure,
-				HttpStatus.OK);
-		return responseEntity;
+		if (user2 != null) {
+			ResponseStructure<User> structure = new ResponseStructure<User>();
+			structure.setStatus(HttpStatus.OK.value());
+			structure.setMessage("successful");
+			structure.setData(user2);
+			ResponseEntity<ResponseStructure<User>> responseEntity = new ResponseEntity<ResponseStructure<User>>(
+					structure, HttpStatus.OK);
+			return responseEntity;
+		}
+		return null;
 	}
-		return null;}
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> getUserById(int userId) {
@@ -73,8 +74,10 @@ public class UserServiceImpl implements UserService {
 					structure, HttpStatus.OK);
 
 			return reponseEntity;
-		}else {
-		throw new IDNotFoundException();	}}
+		} else {
+			throw new IDNotFoundException();
+		}
+	}
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user, @PathVariable int userId) {
@@ -90,7 +93,8 @@ public class UserServiceImpl implements UserService {
 			return responseEntity;
 
 		} else {
-			throw new IDNotFoundException();		}
+			throw new IDNotFoundException();
+		}
 
 	}
 
@@ -106,7 +110,20 @@ public class UserServiceImpl implements UserService {
 			responseEntity = new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.OK);
 			return responseEntity;
 		} else {
-			throw new IDNotFoundException();		}
+			throw new IDNotFoundException();
+		}
+
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<User>> validateUser(Login login) {
+		ResponseStructure<User> responseStructure = new ResponseStructure<User>();
+		responseStructure.setStatus(HttpStatus.OK.value());
+		responseStructure.setMessage("Success");
+		responseStructure.setData(userDao.validateUser(login.getEmail(), login.getPassword()));
+		ResponseEntity<ResponseStructure<User>> responseEntity = new ResponseEntity<ResponseStructure<User>>(
+				responseStructure, HttpStatus.OK);
+		return responseEntity;
 
 	}
 
