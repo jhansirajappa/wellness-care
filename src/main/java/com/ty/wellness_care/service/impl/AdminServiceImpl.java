@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.AdminDao;
 import com.ty.wellness_care.dto.Admin;
+import com.ty.wellness_care.dto.Login;
 import com.ty.wellness_care.service.AdminService;
 import com.ty.wellness_care.util.PasswordAES;
 import com.ty.wellness_care.util.ResponseStructure;
@@ -103,5 +104,15 @@ public class AdminServiceImpl implements AdminService {
 			return null;
 		}
 	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<Admin>> validateAdmin(Login login) {
+		ResponseStructure<Admin> responseStructure = new ResponseStructure<Admin>();
+		responseStructure.setStatus(HttpStatus.OK.value());
+		responseStructure.setMessage("Success");
+		responseStructure.setData(adminDao.validateAdmin(login.getEmail(), login.getPassword()));
+		ResponseEntity<ResponseStructure<Admin>> responseEntity = new ResponseEntity<ResponseStructure<Admin>>(
+				responseStructure, HttpStatus.OK);
+		return responseEntity;	}
 
 }

@@ -58,4 +58,8 @@ public class AdminDaoImpl implements AdminDao {
 		return null;
 	}
 
+	@Override
+	public Admin validateAdmin(String email, String password) {
+		return adminRepository.validateAdmin(email, password);	}
+
 }

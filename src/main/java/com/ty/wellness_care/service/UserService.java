@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ty.wellness_care.dto.Login;
 import com.ty.wellness_care.dto.User;
 import com.ty.wellness_care.util.ResponseStructure;
 
-
 public interface UserService {
-	
+
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user);
 
 	public ResponseEntity<ResponseStructure<User>> getUserById(int userId);
@@ -20,4 +20,5 @@ public interface UserService {
 
 	public ResponseEntity<ResponseStructure<String>> deleteUser(int userId);
 
+	public ResponseEntity<ResponseStructure<User>> validateUser(Login login);
 }

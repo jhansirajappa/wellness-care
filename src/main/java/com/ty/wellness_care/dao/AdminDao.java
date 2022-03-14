@@ -15,4 +15,6 @@ public interface AdminDao {
 	boolean deleteAdmin(int id);
 
 	Admin getAdminById(int id);
+
+	 Admin validateAdmin(String email, String password);
 }

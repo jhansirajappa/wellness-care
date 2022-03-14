@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ty.wellness_care.dto.Admin;
+import com.ty.wellness_care.dto.Login;
 import com.ty.wellness_care.service.AdminService;
 import com.ty.wellness_care.util.ResponseStructure;
 
@@ -28,6 +29,14 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
+	@PostMapping("/adminlogin")
+	@ApiResponses({@ApiResponse(code=200,message="Admin Login Successful"),@ApiResponse(code=404,message = "Admin Login failed"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<Admin>> validateAdmin(@RequestBody Login login) {
+		return service.validateAdmin(login);
+	}
+	
+	
+	
 	@PostMapping("admin")
 	@ApiResponses({@ApiResponse(code=200,message="Admin saved Successful"),
 		@ApiResponse(code=404,message = "Admin Login failed"),
