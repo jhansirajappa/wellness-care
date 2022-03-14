@@ -91,7 +91,7 @@ public class LabServiceImpl implements LabService{
 			ResponseStructure<String> responseStructure = new ResponseStructure<String>();
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("Success");
-			responseStructure.setData("Appointment Deleted");
+			responseStructure.setData("Lab Deleted");
 			ResponseEntity<ResponseStructure<String>> responseEntity = new ResponseEntity<ResponseStructure<String>>(
 					responseStructure, HttpStatus.OK);
 			return responseEntity;
