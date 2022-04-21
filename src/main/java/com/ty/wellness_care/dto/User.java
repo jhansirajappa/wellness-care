@@ -27,7 +27,6 @@ public class User {
 	private long phone_no;
 
 	@OneToMany(mappedBy = "user")
-	@JsonIgnore
 	private List<Appointment> appointments;
 
 	public int getUserId() {

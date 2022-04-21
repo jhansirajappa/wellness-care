@@ -1,12 +1,15 @@
 package com.ty.wellness_care.dto;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Lab {
@@ -19,14 +22,11 @@ public class Lab {
 	private double fees;
 	private String email;
 	private String password;
-	private String report;
-	
+
+
 	@ManyToOne
 	@JoinColumn
 	private Branch branch;
-	
-	@OneToOne
-	private Prescription prescription;
 
 	public int getId() {
 		return id;
@@ -84,14 +84,6 @@ public class Lab {
 		this.password = password;
 	}
 
-	public String getReport() {
-		return report;
-	}
-
-	public void setReport(String report) {
-		this.report = report;
-	}
-
 	public Branch getBranch() {
 		return branch;
 	}
@@ -99,13 +91,4 @@ public class Lab {
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
-
-	public Prescription getPrescription() {
-		return prescription;
-	}
-
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
-	}
-
 }

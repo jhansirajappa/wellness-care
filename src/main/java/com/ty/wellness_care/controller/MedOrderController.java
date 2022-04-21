@@ -59,15 +59,6 @@ public class MedOrderController {
 		return medOrderService.getMedOrderById(medorderid);
 	}
 
-	@GetMapping("prescription/{prescriptionid}/medorder")
-	@ApiResponses({ @ApiResponse(code = 200, message = "Medorder retrieved"),
-			@ApiResponse(code = 404, message = "Medorder not retrieved"),
-			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(
-			@PathVariable int prescriptionid) {
-		return medOrderService.getMedOrderByPrescription(prescriptionid);
-	}
-
 	@DeleteMapping("prescription/medorder")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Medorder deleted"),
 			@ApiResponse(code = 404, message = "Medorder not deleted"),

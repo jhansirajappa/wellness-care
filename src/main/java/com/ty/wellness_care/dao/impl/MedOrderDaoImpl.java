@@ -46,12 +46,6 @@ public class MedOrderDaoImpl implements MedOrderDao {
 			return optional.get();
 		}
 		return null;
-		
-	}
-
-	@Override
-	public List<MedOrder> getMedOrderByPrescription(int prescriptionId) {
-		return medOrderRepository.getMedOrderByPrescription(prescriptionId);
 
 	}
 

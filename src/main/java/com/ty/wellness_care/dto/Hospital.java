@@ -25,11 +25,9 @@ public class Hospital {
 	List<Admin> admin;
 
 	@OneToMany(mappedBy = "hospital" )
-	@JsonIgnore
 	List<Branch> branch;
 	
 	@OneToMany(mappedBy = "hospital")
-	@JsonIgnore
 	List<Doctor> doctor;
 	
 	public int getId() {

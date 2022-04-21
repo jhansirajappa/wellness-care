@@ -49,6 +49,11 @@ public class PrescriptionController {
 		return prescriptionService.getPrescriptionById(prescriptionid);
 	}
 
+	@GetMapping("doctor/mail/prescription/{prescriptionid}")
+	public ResponseEntity<ResponseStructure<Prescription>> getMailofPrescription(@PathVariable int prescriptionid) {
+		return prescriptionService.getMailOfPrescription(prescriptionid);
+	}
+	
 	@DeleteMapping("doctor/prescription")
 	public ResponseEntity<ResponseStructure<String>> deletePrescription(@RequestParam int id) {
 		return prescriptionService.deletePrescription(id);

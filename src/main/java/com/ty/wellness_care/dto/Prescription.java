@@ -3,6 +3,7 @@ package com.ty.wellness_care.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Prescription {
@@ -25,20 +24,33 @@ public class Prescription {
 	private int pressure;
 	private double height;
 	private double weight;
+	private String patientMail;
+	private String report;
 	private LocalDateTime dateTime;
 	private double totalCost;
 
-	@OneToMany(mappedBy = "prescription")
-	@JsonIgnore
-	private List<MedOrder> medOrders;
-
-	@OneToMany(mappedBy = "prescription")
-	@JsonIgnore
-	private List<Lab> labs;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Medication> medications;
 
 	@ManyToOne
 	@JoinColumn
 	private Doctor doctor;
+
+	public String getPatientMail() {
+		return patientMail;
+	}
+
+	public void setPatientMail(String patientMail) {
+		this.patientMail = patientMail;
+	}
+
+	public String getReport() {
+		return report;
+	}
+
+	public void setReport(String report) {
+		this.report = report;
+	}
 
 	public int getId() {
 		return id;
@@ -96,6 +108,22 @@ public class Prescription {
 		this.weight = weight;
 	}
 
+	public List<Medication> getMedications() {
+		return medications;
+	}
+
+	public void setMedications(List<Medication> medications) {
+		this.medications = medications;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
@@ -110,30 +138,6 @@ public class Prescription {
 
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
-	}
-
-	public List<MedOrder> getMedOrders() {
-		return medOrders;
-	}
-
-	public void setMedOrders(List<MedOrder> medOrders) {
-		this.medOrders = medOrders;
-	}
-
-	public List<Lab> getLabs() {
-		return labs;
-	}
-
-	public void setLabs(List<Lab> labs) {
-		this.labs = labs;
-	}
-
-	public Doctor getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
 	}
 
 }

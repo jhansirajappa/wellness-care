@@ -1,12 +1,11 @@
 package com.ty.wellness_care.dto;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 @Entity
 public class MedOrder {
 
@@ -16,10 +15,6 @@ public class MedOrder {
 	private String name;
 	private String suggestions;
 	private double cost;
-
-	@ManyToOne
-	@JoinColumn
-	private Prescription prescription;
 
 	public int getMedOrderId() {
 		return medOrderId;
@@ -53,12 +48,5 @@ public class MedOrder {
 		this.suggestions = suggestions;
 	}
 
-	public Prescription getPrescription() {
-		return prescription;
-	}
-
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
-	}
-
+	
 }

@@ -21,11 +21,11 @@ public class Floor {
 	private int floor_no;
 	
 	@OneToMany(mappedBy = "floor")
-	@JsonIgnore
 	List<Room> room;
 	
 	@ManyToOne
 	@JoinColumn
+
 	Branch branch;
 
 	public int getId() {

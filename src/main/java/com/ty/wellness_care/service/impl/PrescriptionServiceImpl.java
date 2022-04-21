@@ -1,5 +1,6 @@
 package com.ty.wellness_care.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +10,29 @@ import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.PrescriptionDao;
 import com.ty.wellness_care.dto.Prescription;
+import com.ty.wellness_care.email.api.EmailSenderService;
 import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.PrescriptionService;
+import com.ty.wellness_care.util.MailCustomization;
 import com.ty.wellness_care.util.ResponseStructure;
+import com.ty.wellness_care.util.BillOperations;
 
 @Service
 public class PrescriptionServiceImpl implements PrescriptionService {
 
 	@Autowired
 	PrescriptionDao dao;
+	@Autowired
+	EmailSenderService emailSenderService;
+	@Autowired
+	MailCustomization mailCustomization;
+	@Autowired
+	BillOperations calculation;
 
 	@Override
 	public ResponseEntity<ResponseStructure<Prescription>> savePrescription(Prescription prescription) {
+		prescription.setDateTime(LocalDateTime.now());
+		prescription.setTotalCost(calculation.getTotal(prescription.getMedications()));
 		ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("Success");
@@ -32,13 +44,19 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Prescription>> updatePrescription(int id, Prescription prescription) {
-		ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(dao.updatePrescription(id, prescription));
-		ResponseEntity<ResponseStructure<Prescription>> responseEntity = new ResponseEntity<ResponseStructure<Prescription>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
+		Prescription prescription2 = dao.updatePrescription(id, prescription);
+		if (prescription2 != null) {
+			ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData(prescription2);
+			ResponseEntity<ResponseStructure<Prescription>> responseEntity = new ResponseEntity<ResponseStructure<Prescription>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+			throw new IDNotFoundException("Prescription Id: " + id + " not found/exists");
+
+		}
 	}
 
 	@Override
@@ -66,13 +84,19 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<Prescription>> getPrescriptionById(int prescriptionId) {
-		ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(dao.getPrescriptionById(prescriptionId));
-		ResponseEntity<ResponseStructure<Prescription>> responseEntity = new ResponseEntity<ResponseStructure<Prescription>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
+		Prescription prescription = dao.getPrescriptionById(prescriptionId);
+		if (prescription != null) {
+			ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData(prescription);
+			ResponseEntity<ResponseStructure<Prescription>> responseEntity = new ResponseEntity<ResponseStructure<Prescription>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+			throw new IDNotFoundException("Prescription Id: " + prescriptionId + " not found/exists");
+
+		}
 	}
 
 	@Override
@@ -91,6 +115,24 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 		}
 
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<Prescription>> getMailOfPrescription(int prescriptionid) {
+		Prescription prescription = dao.getPrescriptionById(prescriptionid);
+		if (prescription != null) {
+			ResponseStructure<Prescription> responseStructure = new ResponseStructure<Prescription>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Mail Sent");
+			responseStructure.setData(prescription);
+			mailCustomization.sentMail(prescription);
+			ResponseEntity<ResponseStructure<Prescription>> responseEntity = new ResponseEntity<ResponseStructure<Prescription>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+
+			throw new IDNotFoundException("Prescription Id: " + prescriptionid + " not found/exists");
+		}
 	}
 
 }

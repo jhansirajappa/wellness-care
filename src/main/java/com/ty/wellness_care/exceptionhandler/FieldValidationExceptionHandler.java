@@ -1,5 +1,6 @@
 package com.ty.wellness_care.exceptionhandler;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,4 +50,12 @@ public class FieldValidationExceptionHandler extends ResponseEntityExceptionHand
 		return new ResponseEntity<ResponseStructure<String>>(responseStructure, HttpStatus.NOT_FOUND);
 	}
 
+	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+	public ResponseEntity<ResponseStructure<String>> deleteUserException(SQLIntegrityConstraintViolationException exception) {
+		ResponseStructure<String> responseStructure = new ResponseStructure<String>();
+		responseStructure.setStatus(HttpStatus.NOT_FOUND.value());
+		responseStructure.setMessage(exception.getMessage());
+		responseStructure.setData("Exception: Cannot delete the User without deleting the Appointment and Medorders");
+		return new ResponseEntity<ResponseStructure<String>>(responseStructure, HttpStatus.NOT_FOUND);
+	}
 }
