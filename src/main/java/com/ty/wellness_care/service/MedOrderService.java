@@ -17,8 +17,6 @@ public interface MedOrderService {
 
 	public ResponseEntity<ResponseStructure<MedOrder>> getMedOrderById(int id);
 
-	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(int prescriptionId);
-
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id);
 
 }

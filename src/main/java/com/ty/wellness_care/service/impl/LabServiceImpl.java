@@ -11,16 +11,18 @@ import com.ty.wellness_care.dao.LabDao;
 import com.ty.wellness_care.dto.Lab;
 import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.LabService;
+import com.ty.wellness_care.util.PasswordAES;
 import com.ty.wellness_care.util.ResponseStructure;
 
 @Service
-public class LabServiceImpl implements LabService{
+public class LabServiceImpl implements LabService {
 
 	@Autowired
 	LabDao labDao;
-	
+
 	@Override
 	public ResponseEntity<ResponseStructure<Lab>> saveLab(Lab lab) {
+		lab.setPassword(PasswordAES.encrypt(lab.getPassword()));
 		ResponseStructure<Lab> responseStructure = new ResponseStructure<Lab>();
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("Success");
@@ -33,8 +35,10 @@ public class LabServiceImpl implements LabService{
 	@Override
 	public ResponseEntity<ResponseStructure<Lab>> getLabById(int id) {
 		Lab lab = labDao.getLabById(id);
+
 		ResponseStructure<Lab> responseStructure = new ResponseStructure<Lab>();
 		if (lab != null) {
+			lab.setPassword(PasswordAES.decrypt(lab.getPassword()));
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("Success");
 			responseStructure.setData(lab);
@@ -47,13 +51,18 @@ public class LabServiceImpl implements LabService{
 			throw new IDNotFoundException(" No lab found to display");
 		}
 	}
-	
 
 	@Override
 	public ResponseEntity<ResponseStructure<List<Lab>>> getAllLab() {
 		List<Lab> lab = labDao.getAllLabs();
+
 		ResponseStructure<List<Lab>> responseStructure = new ResponseStructure<List<Lab>>();
 		if (lab != null) {
+
+			for (Lab lab2 : lab) {
+				lab2.setPassword(PasswordAES.decrypt(lab2.getPassword()));
+			}
+
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("Success");
 			responseStructure.setData(lab);
@@ -69,6 +78,7 @@ public class LabServiceImpl implements LabService{
 
 	@Override
 	public ResponseEntity<ResponseStructure<Lab>> updateLab(Lab lab, int id) {
+		lab.setPassword(PasswordAES.encrypt(lab.getPassword()));
 		Lab lab1 = labDao.updateLab(id, lab);
 		if (lab1 != null) {
 			ResponseStructure<Lab> responseStructure = new ResponseStructure<Lab>();
@@ -91,7 +101,7 @@ public class LabServiceImpl implements LabService{
 			ResponseStructure<String> responseStructure = new ResponseStructure<String>();
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("Success");
-			responseStructure.setData("Appointment Deleted");
+			responseStructure.setData("Lab Deleted");
 			ResponseEntity<ResponseStructure<String>> responseEntity = new ResponseEntity<ResponseStructure<String>>(
 					responseStructure, HttpStatus.OK);
 			return responseEntity;
@@ -103,14 +113,19 @@ public class LabServiceImpl implements LabService{
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<Lab>> getLabByPrescription(int id) {
-		Lab lab = labDao.getLabByPrescription(id);
-		ResponseStructure<Lab> responseStructure = new ResponseStructure<Lab>();
+	public ResponseEntity<ResponseStructure<List<Lab>>> getLabByBranch(int id) {
+		List<Lab> lab = labDao.getLabByBranch(id);
+		ResponseStructure<List<Lab>> responseStructure = new ResponseStructure<List<Lab>>();
 		if (lab != null) {
+
+			for (Lab lab2 : lab) {
+				lab2.setPassword(PasswordAES.decrypt(lab2.getPassword()));
+			}
+
 			responseStructure.setStatus(HttpStatus.OK.value());
 			responseStructure.setMessage("Success");
 			responseStructure.setData(lab);
-			ResponseEntity<ResponseStructure<Lab>> responseEntity = new ResponseEntity<ResponseStructure<Lab>>(
+			ResponseEntity<ResponseStructure<List<Lab>>> responseEntity = new ResponseEntity<ResponseStructure<List<Lab>>>(
 					responseStructure, HttpStatus.OK);
 
 			return responseEntity;
@@ -119,26 +134,5 @@ public class LabServiceImpl implements LabService{
 			throw new IDNotFoundException(" No Appointment found to display");
 		}
 	}
-
-	@Override
-	public ResponseEntity<ResponseStructure<Lab>> getLabByBranch(int id) {
-		Lab lab = labDao.getLabByBranch(id);
-		ResponseStructure<Lab> responseStructure = new ResponseStructure<Lab>();
-		if (lab != null) {
-			responseStructure.setStatus(HttpStatus.OK.value());
-			responseStructure.setMessage("Success");
-			responseStructure.setData(lab);
-			ResponseEntity<ResponseStructure<Lab>> responseEntity = new ResponseEntity<ResponseStructure<Lab>>(
-					responseStructure, HttpStatus.OK);
-
-			return responseEntity;
-
-		} else {
-			throw new IDNotFoundException(" No Appointment found to display");
-		}
-	}
-
-
-	
 
 }

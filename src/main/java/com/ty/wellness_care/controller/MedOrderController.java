@@ -30,7 +30,7 @@ public class MedOrderController {
 	@ApiResponses({ @ApiResponse(code = 200, message = "Medorder Saved"),
 			@ApiResponse(code = 404, message = "Medorder not saved"),
 			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<ResponseStructure<MedOrder>> saveMedOrder(MedOrder medOrder) {
+	public ResponseEntity<ResponseStructure<MedOrder>> saveMedOrder(@RequestBody MedOrder medOrder) {
 		return medOrderService.saveMedOrder(medOrder);
 	}
 
@@ -57,15 +57,6 @@ public class MedOrderController {
 			@ApiResponse(code = 500, message = "Internal Server Error") })
 	public ResponseEntity<ResponseStructure<MedOrder>> getMedOrderById(@PathVariable int medorderid) {
 		return medOrderService.getMedOrderById(medorderid);
-	}
-
-	@GetMapping("prescription/{prescriptionid}/medorder")
-	@ApiResponses({ @ApiResponse(code = 200, message = "Medorder retrieved"),
-			@ApiResponse(code = 404, message = "Medorder not retrieved"),
-			@ApiResponse(code = 500, message = "Internal Server Error") })
-	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(
-			@PathVariable int prescriptionid) {
-		return medOrderService.getMedOrderByPrescription(prescriptionid);
 	}
 
 	@DeleteMapping("prescription/medorder")

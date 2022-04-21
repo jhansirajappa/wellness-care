@@ -1,12 +1,16 @@
 package com.ty.wellness_care.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ty.wellness_care.dao.DoctorDao;
 import com.ty.wellness_care.dto.Doctor;
+import com.ty.wellness_care.dto.Prescription;
 import com.ty.wellness_care.repository.DoctorRepository;
 
 @Repository
@@ -38,7 +42,13 @@ public class DoctorDaoImpl implements DoctorDao {
 
 	@Override
 	public Doctor getDoctorById(int id) {
-		return doctorRepository.getById(id);
+
+		Optional<Doctor> optional = doctorRepository.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+
 	}
 
 	@Override
@@ -49,13 +59,13 @@ public class DoctorDaoImpl implements DoctorDao {
 	@Override
 	public boolean deleteDoctor(int id) {
 		Doctor doctor = getDoctorById(id);
+		System.out.println(doctor);
 		if (doctor != null) {
-			doctor.setId(id);
 			doctorRepository.delete(doctor);
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
-
 
 }

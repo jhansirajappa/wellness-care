@@ -29,44 +29,44 @@ public class BedController {
 
 	@PostMapping("room/bed")
 	@ApiOperation("To Save Bed")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived bed"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Bed>> saveBed(@RequestBody Bed bed) {
 		return bedService.saveBed(bed);
 	}
 
 	@PutMapping("room/bed/{bedid}")
 	@ApiOperation("To Update Bed By Id")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived bed"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Bed>> updateBed(@PathVariable int bedid,@RequestBody Bed bed) {
 		return bedService.updateBed(bedid, bed);
 	}
 
 	@GetMapping("room/bed")
 	@ApiOperation("To Get All Beds")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived bed"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Bed>>> getAllBed() {
 		return bedService.getAllBed();
 	}
 
 	@GetMapping("room/bed/{bedid}")
 	@ApiOperation("To Get Bed By Id")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived bed"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<Bed>> getBedById(@PathVariable int bedid) {
 		return bedService.getBedById(bedid);
 	}
 
 	@GetMapping("room/{roomid}/bed")
 	@ApiOperation("To Get Bed By Room Id")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	@ApiResponses({@ApiResponse(code=200,message="Retrived bed"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
 	public ResponseEntity<ResponseStructure<List<Bed>>> getBedByRoom(@PathVariable int roomid) {
 		return bedService.getBedByRoom(roomid);
 	}
 
-	@DeleteMapping("room/bed/{bedid}")
+	@DeleteMapping("room/bed")
 	@ApiOperation("To Delete Bed By Id")
-	@ApiResponses({@ApiResponse(code=200,message="Retrived User"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
-	public ResponseEntity<ResponseStructure<String>> deleteBed(@PathVariable int bedid) {
-		return bedService.deleteBed(bedid);
+	@ApiResponses({@ApiResponse(code=200,message="bed deleted"),@ApiResponse(code=404,message = "ID not found"),@ApiResponse(code=500,message = "Internal Server Error")})
+	public ResponseEntity<ResponseStructure<String>> deleteBed(@RequestParam int id) {
+		return bedService.deleteBed(id);
 	}
 
 }

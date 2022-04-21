@@ -14,5 +14,6 @@ public interface PrescriptionService {
 	public ResponseEntity<ResponseStructure<List<Prescription>>> getPrescriptionByDoctor( int doctorid);
 	public ResponseEntity<ResponseStructure<Prescription>> getPrescriptionById(int prescriptionId);
 	public ResponseEntity<ResponseStructure<String>> deletePrescription(int id);
+	public ResponseEntity<ResponseStructure<Prescription>> getMailOfPrescription(int prescriptionid);
 
 }

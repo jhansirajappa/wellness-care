@@ -21,8 +21,8 @@ public class Room {
 	private int room_no;
 	
 	@OneToMany(mappedBy = "room")
-	@JsonIgnore
 	List<Bed> bed;
+	
 	
 	@ManyToOne
 	@JoinColumn

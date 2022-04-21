@@ -32,13 +32,20 @@ public class MedOrderServiceImpl implements MedOrderService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<MedOrder>> updateMedOrder(int id, MedOrder medOrder) {
-		ResponseStructure<MedOrder> responseStructure = new ResponseStructure<MedOrder>();
-		responseStructure.setStatus(HttpStatus.OK.value());
-		responseStructure.setMessage("Success");
-		responseStructure.setData(medOrderDao.updateMedOrder(id, medOrder));
-		ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
-				responseStructure, HttpStatus.OK);
-		return responseEntity;
+		MedOrder medOrder2 = medOrderDao.updateMedOrder(id, medOrder);
+		if (medOrder2 != null) {
+			ResponseStructure<MedOrder> responseStructure = new ResponseStructure<MedOrder>();
+			responseStructure.setStatus(HttpStatus.OK.value());
+			responseStructure.setMessage("Success");
+			responseStructure.setData(medOrder2);
+			ResponseEntity<ResponseStructure<MedOrder>> responseEntity = new ResponseEntity<ResponseStructure<MedOrder>>(
+					responseStructure, HttpStatus.OK);
+			return responseEntity;
+		} else {
+			throw new IDNotFoundException("MedOrder Id: " + id + " not found/exists");
+
+		}
+
 	}
 
 	@Override
@@ -60,24 +67,6 @@ public class MedOrderServiceImpl implements MedOrderService {
 	}
 
 	@Override
-	public ResponseEntity<ResponseStructure<List<MedOrder>>> getMedOrderByPrescription(int prescriptionId) {
-		List<MedOrder> medOrder = medOrderDao.getMedOrderByPrescription(prescriptionId);
-		if (medOrder != null) {
-			ResponseStructure<List<MedOrder>> structure = new ResponseStructure<List<MedOrder>>();
-			structure.setStatus(HttpStatus.OK.value());
-			structure.setMessage("successfull");
-			structure.setData(medOrder);
-			ResponseEntity<ResponseStructure<List<MedOrder>>> responseEntity = new ResponseEntity<ResponseStructure<List<MedOrder>>>(
-					structure, HttpStatus.OK);
-
-			return responseEntity;
-		} else {
-			return null;
-		}
-
-	}
-
-	@Override
 	public ResponseEntity<ResponseStructure<MedOrder>> getMedOrderById(int id) {
 
 		MedOrder medOrder = medOrderDao.getMedOrderById(id);
@@ -91,11 +80,11 @@ public class MedOrderServiceImpl implements MedOrderService {
 
 			return responseEntity;
 		} else {
-			return null;
+			throw new IDNotFoundException("MedOrder Id: " + id + " not found/exists");
+
 		}
+
 	}
-		
-		
 
 	@Override
 	public ResponseEntity<ResponseStructure<String>> deleteMedOrder(int id) {

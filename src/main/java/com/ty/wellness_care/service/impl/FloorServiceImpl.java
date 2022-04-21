@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.ty.wellness_care.dao.FloorDao;
 import com.ty.wellness_care.dto.Floor;
-import com.ty.wellness_care.dto.Hospital;
 import com.ty.wellness_care.exception.IDNotFoundException;
 import com.ty.wellness_care.service.FloorService;
 import com.ty.wellness_care.util.ResponseStructure;

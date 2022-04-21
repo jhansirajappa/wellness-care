@@ -34,10 +34,10 @@ public class RoomServiceImpl implements RoomService{
 
 	@Override
 	public ResponseEntity<ResponseStructure<Room>> updateRoom(int id, Room room) {
-		Room room2=roomDao.getRoomById(id);
+		//Room room2=roomDao.getRoomById(id);
 		
-		if(room2 != null) {
-			room.setId(room2.getId());
+		if(room != null) {
+			room.setId(room.getId());
 			roomDao.updateRoom(id, room);
 		ResponseStructure<Room> responseStructure=new ResponseStructure<Room>();
 		responseStructure.setStatus(HttpStatus.OK.value());
@@ -118,7 +118,7 @@ public class RoomServiceImpl implements RoomService{
 		if(roomDao.deleteRoom(id)) {
 		responseStructure.setStatus(HttpStatus.OK.value());
 		responseStructure.setMessage("success");
-		responseStructure.setData("Hospital deleted");
+		responseStructure.setData("Room deleted");
 		responseEntity=new ResponseEntity<ResponseStructure<String>>(responseStructure,HttpStatus.OK);
 		return responseEntity;
 	}

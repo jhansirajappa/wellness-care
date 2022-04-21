@@ -14,9 +14,7 @@ public interface LabDao {
 
 	boolean deleteLab(int id);
 
-	Lab getLabByPrescription(int id);
-
-	Lab getLabByBranch(int id);
+	List<Lab> getLabByBranch(int id);
 
 	Lab getLabById(int id);
 }

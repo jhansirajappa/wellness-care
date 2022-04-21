@@ -31,8 +31,6 @@ public class LabDaoImpl implements LabDao {
 			existingLab.setFees(lab.getFees());
 			existingLab.setEmail(lab.getEmail());
 			existingLab.setPassword(lab.getPassword());
-			existingLab.setReport(lab.getReport());
-
 			return existingLab;
 		}
 		return null;
@@ -54,13 +52,8 @@ public class LabDaoImpl implements LabDao {
 	}
 
 	@Override
-	public Lab getLabByBranch(int id) {
+	public List<Lab> getLabByBranch(int id) {
 		return labRepository.getLabByBranch(id);
-	}
-
-	@Override
-	public Lab getLabByPrescription(int id) {
-		return labRepository.getLabByPrescription(id);
 	}
 
 	@Override

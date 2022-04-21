@@ -23,7 +23,6 @@ public class Branch {
 	private String address;
 	
 	@OneToMany(mappedBy = "branch")
-	@JsonIgnore
 	List<Floor> floor;
 	
 	@OneToMany(mappedBy = "branch")

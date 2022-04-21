@@ -8,7 +8,7 @@ import com.ty.wellness_care.dto.Lab;
 import com.ty.wellness_care.util.ResponseStructure;
 
 public interface LabService {
-	
+
 	public ResponseEntity<ResponseStructure<Lab>> saveLab(Lab lab);
 
 	public ResponseEntity<ResponseStructure<Lab>> getLabById(int id);
@@ -19,8 +19,6 @@ public interface LabService {
 
 	public ResponseEntity<ResponseStructure<String>> deleteLab(int id);
 
-	public ResponseEntity<ResponseStructure<Lab>> getLabByPrescription(int id);
-	
-	public ResponseEntity<ResponseStructure<Lab>> getLabByBranch(int id);
+	public ResponseEntity<ResponseStructure<List<Lab>>> getLabByBranch(int id);
 
 }
